@@ -484,6 +484,7 @@ function norm(r){
     artist: r.artist || "Untitled",
     hook: r.hook || "",
     treatment: r.treatment || "",
+    energy_source: r.energy_source || "",
     disciplines: arr(r.disciplines),
     palette: arr(r.palette).filter(p => p && /^#[0-9a-f]{3,8}$/i.test(String(p.hex||""))),
     card: arr(r.card).filter(c => c && c.label),
@@ -633,6 +634,7 @@ function renderDetail(l){
             <div class="method" id="tx">${esc(l.treatment)}</div>
             <button class="copy" type="button" id="copy">Copy method</button>
           </div>
+          ${l.energy_source?`<div class="part"><div class="sub label">Energy source</div><p class="device">${esc(l.energy_source)}</p></div>`:""}
           ${l.device?`<div class="part"><div class="sub label">The device underneath</div><p class="device">${esc(l.device)}</p></div>`:""}
         </div>
       </div>
