@@ -60,7 +60,77 @@ from net._http_response order by id desc limit 10;
 The function only accepts `media.flora.ai` and `m.itsnicethat.com`. For any other host, put the
 image on the Flora canvas first and mirror from the `media.flora.ai` URL that comes back.
 
-## 5. Write the treatment string
+## 5. Decompose the plates, THEN write the treatment string
+
+This is the step that decides whether the look replicates, and it is where look 002 failed.
+
+**The treatment string is a description of the plates in front of you, not of the artist's
+reputation.** The failure mode is writing what you know about the artist — what they are famous
+for, what a critic would say about them — instead of what is visibly true of the five images
+you actually chose. The model then obeys the words over the pictures, and you get a frame that
+matches the description of the artist and looks nothing like their work.
+
+### 5a. Build the evidence table first
+
+Open each plate. For each one, write down only what is observable:
+
+| | Lens & geometry | Light | Colour | Subject placement | Capture medium & texture | Who is in frame |
+|---|---|---|---|---|---|---|
+| ref-1 | | | | | | |
+| ref-2 | | | | | | |
+| ref-3 | | | | | | |
+| ref-4 | | | | | | |
+| ref-5 | | | | | | |
+
+Describe what is there, not what it evokes. "Straight lines stay straight, no barrel
+distortion" is an observation. "Signature fisheye maximalism" is a memory.
+
+**Capture medium is a column in its own right and is the easiest one to forget.** Film stock or
+video format, grain size, how soft the optical detail is, whether highlights bloom and clip,
+whether blacks are clean or muddy and compressed, whether there is chroma noise in the shadows.
+A treatment that gets colour and staging right but omits the medium produces a clean modern
+digital image wearing the look as a costume — too sharp, too much dynamic range, too much
+micro-contrast. If the plates are 1990s video, say so and describe the degradation.
+
+**"Who is in frame" is also a column, and the model will get it wrong by default.** Image
+models default to white subjects unless told otherwise. If the plates depict a specific
+community — and a body of work almost always does — then reproducing the look with a generic
+cast is both unfaithful to the references and erases the culture the work came from. Write the
+casting into the subject clause with the same specificity you would give a lens: who these
+people are, their ages and builds, how they are styled. Vary it across the four frames rather
+than shooting the same person four times.
+
+### 5b. Keep only what the majority of plates support
+
+**Every clause in the treatment string must be true of at least three of the five plates.**
+Anything supported by fewer than two is a reputation feature: cut it, however strongly you
+associate it with the artist. If a feature appears in exactly two, it may go in only as a
+qualified option ("often", "in some frames"), never as a core instruction.
+
+Then read the finished string back against the table and ask, clause by clause: *which plates
+show this?* If you cannot name them, the clause is invented.
+
+### 5c. Worked example of getting it wrong
+
+Look 002's string told the model the subject's "body bows outward", the "architecture bends
+into a curve", "straight lines bow at the borders", the key bounces off "chrome, patent leather
+or metallic surface", and the subject sits "dead centre, filling and slightly overwhelming the
+frame".
+
+Not one of those five things is present in any of the five plates. The plates are undistorted,
+have no chrome in them, and place the subject mid-size inside a large dark interior. What the
+plates actually share is a single saturated colour flooding the whole frame, practical fixtures
+as the only light source, crushed detail-free blacks, and a still deadpan subject standing
+inside architecture rather than filling the frame.
+
+The string described the Hype Williams everyone remembers. The plates are the Hype Williams that
+was chosen. The model did what it was told, which is why three of four frames came back as a
+glass ball floating in black.
+
+Looks 001 and 003 replicated well precisely because their strings are literal readings of their
+plates — Hasselblad, open shade, muted green-grey; 28mm, 1/8 second, pushed grain.
+
+### 5d. Then write it
 
 One paragraph, no line breaks, that works pasted in front of any subject. State the frame as
 what IS in it — negative instructions get ignored. Name the physical cause of the energy, not
