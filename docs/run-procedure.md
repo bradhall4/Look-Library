@@ -130,7 +130,46 @@ glass ball floating in black.
 Looks 001 and 003 replicated well precisely because their strings are literal readings of their
 plates — Hasselblad, open shade, muted green-grey; 28mm, 1/8 second, pushed grain.
 
-### 5d. Then write it
+### 5d. Beating the AI sheen — the model is half the job
+
+A correct treatment string still comes back looking rendered rather than photographed: skin
+too clean, everything evenly lit and legible, crowds arranged facing camera, fabric with a
+plastic sheen. That is not a fault in the string, and no amount of technical camera language
+fixes it. It is the model's house style, and the fix is partly a different model and partly a
+different **kind** of instruction.
+
+Tested on look 002, eight ways, same plates and same subject (8 Sep 2026):
+
+| | Approach | Model | Result |
+|---|---|---|---|
+| A | Full technical string | Nano Banana Pro | Sharp, glossy, arranged. 3–5× the plates' detail energy. |
+| B | Same string | Krea 2 References | Plate-range texture |
+| C | Same string | Flux 2 Pro | Very sharp |
+| D | Same string | Flux Kontext Max | Plate-range texture |
+| E | Terse, let plates carry it | Krea 2 References | Plate-range texture |
+| F | VHS degradation language | Nano Banana Pro | Closer, still clean |
+| G | Scanned scratched print | Flux 2 Max | Sharpest of all — asking harder for degradation did the opposite |
+| **H** | **Anti-gloss: materials and people** | **GPT Image 2** | **Chosen. The only one that reads as documentary.** |
+
+**What won was describing people and materials, not cameras.** The H prompt said: skin matte
+and uneven with visible pores and blemishes, shine only where sweat actually sits; fabric
+creased and worn, pilled and scuffed at the cuffs; nothing retouched, nothing symmetrical,
+nobody posed like a model; ordinary-looking people with ordinary faces, caught standing still
+rather than styled; the crowd half-turned away and partly occluded rather than facing camera.
+
+The result had matte unlit skin, a crowd doing its own thing, genuine unreadable darkness
+instead of everything exposed, a matte creased jacket instead of a glossy balloon, and real
+clutter in frame — an exit sign, speaker boxes, a pillar cropping the edge.
+
+Two things to carry forward:
+
+- **Add an anti-gloss paragraph to every treatment string**, before the subject clause. Describe
+  skin, fabric, and how people are behaving. Technical camera specs alone will not get you there.
+- **Try at least two models before settling.** Asking a model harder for what it does not do is
+  wasted money — test G proves it. `i2i-gpt-image-2-i2i` is the current default for looks that
+  need to read as photographed; it also matched the plates' native dimensions on its own.
+
+### 5e. Then write it
 
 One paragraph, no line breaks, that works pasted in front of any subject. State the frame as
 what IS in it — negative instructions get ignored. Name the physical cause of the energy, not
