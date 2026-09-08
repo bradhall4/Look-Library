@@ -239,6 +239,12 @@ Notes that matter:
 - `card` should carry an **Energy source** row as well as the `energy_source` column.
 - `frames` roles used so far: Control, Modern transfer, Sport, Night, Environment, Tonal
   extreme, Object transfer. The control frame is the clean, product-free one.
+- **Frame captions are editorial captions, not prompt fragments.** Write what a picture editor
+  would write under the image: short, concrete, describing what is in the frame. Do not paste
+  back pieces of the generation prompt. "Free-throw line, empty court" is a caption. "Basketball
+  player at the free-throw line, empty court, wearing the glasses" is a prompt with the
+  scaffolding still attached. Match the house style set by look 001: "Period figure on modern
+  tarmac", "Trestle table, meal finished".
 - `mode` is `refined` normally; `social` only for the Friday social format in
   `social-fridays.md`.
 - Storage URLs are `https://llnydhsfqyeyvckypxmk.supabase.co/storage/v1/object/public/frames/...`.
