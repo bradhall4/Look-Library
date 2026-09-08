@@ -282,6 +282,29 @@ A frame that fails any of these gets regenerated, not published with an apology 
 Same `net.http_post` call as step 4, with `look-NNN/<slug>.png` paths. Slug names must describe
 the actual content, so that a file called `dj.png` is the DJ frame. Confirm each landed.
 
+### Never overwrite a storage path that has already been published
+
+**Replacing a frame means writing to a NEW path**, e.g. `look-NNN/v2/<slug>.png`, and pointing
+the row at it. Storage sits behind a CDN. Overwriting an object at a path that has already been
+served leaves stale copies cached at edges you cannot see, so the row is correct, the origin is
+correct, and the reader still gets the old picture. Old objects are harmless once nothing links
+to them; leave them.
+
+This cost real time on look 002. Captions updated instantly because they come from the database,
+while the images stayed on the previous version for the reader — the exact combination that
+makes it look like a caption bug rather than a caching one.
+
+**Verify the way a browser would.** A plain, header-free GET:
+
+```
+curl -s -o out.png "<public url>"     # then compare the checksum to the file you meant to publish
+```
+
+Do not verify with `Cache-Control: no-cache`, and do not verify with a `?t=` cache-buster. Both
+bypass exactly the cache that is about to serve the reader the wrong image, so both report
+success while the page is wrong. Checking from one machine also only proves one edge; a fresh
+path is the only thing that proves it everywhere.
+
 ## 9. Write the row
 
 This is the publish. Every column below is what the site reads; anything omitted degrades
