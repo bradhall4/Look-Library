@@ -1,8 +1,9 @@
 # Look Library — handoff to Claude Code
 
 Written 8 September 2026 at the end of the Cowork session that built this. Read this first,
-then the operating rules in the attached Claude project: `claude/look-library-config.md`,
-`claude/look-library-product.md`, `claude/look-library-social-fridays.md`.
+then the operating rules in `docs/` alongside this file: `config.md`, `product-rule.md`,
+`social-fridays.md`, `site.md`. The same documents also live in the attached Claude project
+under `claude/look-library-*.md`; the copies in `docs/` are the ones that travel with the repo.
 
 ## What this is
 
@@ -87,22 +88,22 @@ Three recipes, all complete in Supabase with source plates, cards, palettes, fra
 | # | Artist | Lane | Standing |
 |---|--------|------|----------|
 | 001 | Ana Paganini, "200 Summers Later" | current | Transfers well. Built on stillness, so it would fail the energy filter added afterwards. Kept as the counterexample. |
-| 002 | Hype Williams, "Fisheye Chrome Maximalism" | archive | Car interior frame is strong. Three of four frames rendered a circular fisheye floating in black because the model read "fisheye" as a lens shape. Treatment string rewritten to say full-frame barrel distortion. DJ frame fails and should be regenerated. |
-| 003 | William Klein, "Vogue in the Street" | archive | Proximity and crop right, but the subject came back frozen sharp, making it a fast-shutter sports frame rather than a 1/8-second Klein frame. Treatment string rewritten to say BOTH subject and background smear. Needs retesting. |
+| 002 | Hype Williams, "Fisheye Chrome Maximalism" | archive | DJ frame regenerated 8 Sep and now holds: 64% frame coverage against the old 48%, subject centred and monumental. The curved, corner-masked rendering could not be removed by any prompt wording, but the car frame everyone likes is curved too, so the curve is not the defect. The puffer frame is now the weakest at 43% coverage and is the next one to deal with. |
+| 003 | William Klein, "Vogue in the Street" | archive | Retested 8 Sep. The rewritten treatment string works: skate and football frames regenerated with nothing changed but the string, and both now smear subject and background together with one sharp anchor. Captions had also been misassigned across three of four frames; storage and captions now agree. |
 
 Neither 002 nor 003 has a product yet; the product rule was added after those runs.
 
 ## Open items
 
-1. Push the repo, link it in Netlify. Deploys become a push.
-2. Regenerate look 002's DJ frame and retest look 003 with the corrected treatment strings.
-   About 18 cents a frame.
-3. Backfill products into 002 and 003 if Brad wants consistency with the new format.
-4. Cron is pinned to PDT. When the US falls back in November the run lands at 3pm local until
+1. Regenerate look 002's puffer frame. It is the weakest frame in the library at 43% picture
+   coverage, a small orb in a large black field. About 18 cents a frame. (The DJ frame and
+   look 003's retest were done on 8 Sep; see the table above.)
+2. Backfill products into 002 and 003 if Brad wants consistency with the new format.
+3. Cron is pinned to PDT. When the US falls back in November the run lands at 3pm local until
    the cron moves to `0 0 * * 2,4,6`.
-5. No favicon. The 2Player wordmark is 4:1 and illegible at 16px; it needs the "2" glyph cropped
+4. No favicon. The 2Player wordmark is 4:1 and illegible at 16px; it needs the "2" glyph cropped
    into a square viewBox.
-6. `~/Sites/look-library/index.html` is a stale copy from an early deploy attempt. Delete it.
+5. `~/Sites/look-library/index.html` is a stale copy from an early deploy attempt. Delete it.
 
 ## Security, do these
 
