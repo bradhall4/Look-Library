@@ -88,16 +88,16 @@ Three recipes, all complete in Supabase with source plates, cards, palettes, fra
 | # | Artist | Lane | Standing |
 |---|--------|------|----------|
 | 001 | Ana Paganini, "200 Summers Later" | current | Transfers well. Built on stillness, so it would fail the energy filter added afterwards. Kept as the counterexample. |
-| 002 | Hype Williams, "Fisheye Chrome Maximalism" | archive | DJ frame regenerated 8 Sep and now holds: 64% frame coverage against the old 48%, subject centred and monumental. The curved, corner-masked rendering could not be removed by any prompt wording, but the car frame everyone likes is curved too, so the curve is not the defect. The puffer frame is now the weakest at 43% coverage and is the next one to deal with. |
+| 002 | Hype Williams, "Fisheye Chrome Maximalism" | archive | DJ frame regenerated 8 Sep and now holds: 64% frame coverage against the old 48%, subject centred and monumental. The curved, corner-masked rendering could not be removed by any prompt wording, but the car frame everyone likes is curved too, so the curve is not the defect. The chrome puffer frame is the strongest at 65% coverage and should lead. The mid-dunk sport frame is the weakest at 43% and is next to deal with. Captions in this look were also swapped between the puffer and the dunk; fixed. |
 | 003 | William Klein, "Vogue in the Street" | archive | Retested 8 Sep. The rewritten treatment string works: skate and football frames regenerated with nothing changed but the string, and both now smear subject and background together with one sharp anchor. Captions had also been misassigned across three of four frames; storage and captions now agree. |
 
 Neither 002 nor 003 has a product yet; the product rule was added after those runs.
 
 ## Open items
 
-1. Regenerate look 002's puffer frame. It is the weakest frame in the library at 43% picture
-   coverage, a small orb in a large black field. About 18 cents a frame. (The DJ frame and
-   look 003's retest were done on 8 Sep; see the table above.)
+1. Regenerate look 002's basketball / mid-dunk frame. It is the weakest frame in the library
+   at 43% picture coverage, a small orb in a large black field. About 18 cents a frame. (The DJ
+   frame and look 003's retest were done on 8 Sep; see the table above.)
 2. Backfill products into 002 and 003 if Brad wants consistency with the new format.
 3. Cron is pinned to PDT. When the US falls back in November the run lands at 3pm local until
    the cron moves to `0 0 * * 2,4,6`.
@@ -126,6 +126,13 @@ Neither 002 nor 003 has a product yet; the product rule was added after those ru
   caused one set of misassigned captions.
 - **Flora's fetch allowlist is far broader than its docs suggest.** m.itsnicethat.com worked
   directly. Test rather than assume.
+- **Captions get misassigned on every single multi-frame run so far.** Three for three: looks
+  001 through 003 all shipped with at least one frame carrying another frame's caption, because
+  Flora returns run ids in a different order than the nodes were passed. Two of the three were
+  caught only by opening the images weeks later. Never match outputs by position. Either
+  generate one frame per call and keep the run id, or open every frame and match by eye before
+  writing the row.
+
 - **Look at generated frames before publishing.** Two scheduled runs published without looking,
   said so honestly, and both had real defects only visible on inspection.
 - **Do not declare a run failed because a list looks empty.** Flora projects can appear minutes

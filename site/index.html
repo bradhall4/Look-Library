@@ -216,6 +216,126 @@
     padding:24px var(--gut) 40px;border-top:1.5px solid var(--ink);
     display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:space-between;
   }
+
+  /* ---------- global nav ---------- */
+  .top{gap:16px}
+  .nav{display:flex;align-items:baseline;gap:2px;margin-left:auto}
+  .navlink{
+    font-family:var(--mono);font-size:10.5px;font-weight:500;text-transform:uppercase;
+    letter-spacing:.13em;color:var(--ink-3);background:none;border:0;cursor:pointer;
+    padding:5px 10px;text-decoration:none;position:relative;font-feature-settings:"tnum";
+  }
+  .navlink::after{
+    content:"";position:absolute;left:10px;right:10px;bottom:1px;height:1px;
+    background:var(--mark);transform:scaleX(0);transform-origin:left;
+    transition:transform .32s cubic-bezier(.2,.7,.2,1);
+  }
+  .navlink:hover{color:var(--ink)}
+  .navlink:hover::after,.navlink.on::after{transform:scaleX(1)}
+  .navlink.on{color:var(--ink)}
+  .top #count{flex:none;padding-left:14px;border-left:1px solid var(--rule)}
+  @media (max-width:720px){
+    .top{flex-wrap:wrap}
+    .nav{width:100%;margin-left:0;padding-top:4px;border-top:1px solid var(--hair)}
+    .navlink{padding-left:0;padding-right:18px}
+    .navlink::after{left:0;right:18px}
+    .top #count{border-left:0;padding-left:0}
+  }
+
+  /* ---------- image loading ---------- */
+  /* Frames arrive from storage at full size. Hold the box, shimmer while it is
+     empty, then fade the picture in so the grid never jumps as rows populate. */
+  figure{position:relative}
+  .shim{background:var(--hair);position:relative;overflow:hidden}
+  .shim::before{
+    content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
+    animation:shim 1.5s infinite;
+  }
+  @keyframes shim{100%{transform:translateX(100%)}}
+  .shim.done::before{display:none;}
+  .shim.done{background:var(--card)}
+  img[data-fade]{opacity:0;transition:opacity .5s ease}
+  img[data-fade].in{opacity:1}
+  @media (prefers-reduced-motion:reduce){
+    img[data-fade]{transition:none;opacity:1}
+    .shim::before{animation:none}
+  }
+
+  /* ---------- zoomable images ---------- */
+  .zoom{cursor:zoom-in}
+  .plate figure,.ref figure{transition:transform .4s cubic-bezier(.2,.6,.2,1)}
+  @media (prefers-reduced-motion:no-preference){
+    .plate figure:hover,.ref figure:hover{transform:translateY(-3px)}
+  }
+
+  /* ---------- detail entrance + look-to-look nav ---------- */
+  @media (prefers-reduced-motion:no-preference){
+    .detail:not([hidden]){animation:sheet .34s cubic-bezier(.2,.7,.2,1)}
+    @keyframes sheet{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  }
+  .bar .seq{display:flex;align-items:center;gap:2px;margin-left:auto}
+  .seq button{
+    background:none;border:1px solid var(--rule);cursor:pointer;color:var(--ink-2);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:6px 11px;transition:border-color .2s,color .2s;
+  }
+  .seq button:hover:not(:disabled){border-color:var(--mark);color:var(--mark)}
+  .seq button:disabled{opacity:.32;cursor:default}
+  .bar .close{margin-left:14px;padding-left:14px;border-left:1px solid var(--rule)}
+
+  /* ---------- lightbox ---------- */
+  .lb{
+    position:fixed;inset:0;z-index:60;background:rgba(13,13,11,.955);
+    display:flex;flex-direction:column;overscroll-behavior:contain;
+  }
+  .lb[hidden]{display:none!important}
+  @media (prefers-reduced-motion:no-preference){
+    .lb:not([hidden]){animation:lbin .22s ease}
+    @keyframes lbin{from{opacity:0}to{opacity:1}}
+  }
+  .lb-top{
+    display:flex;align-items:center;justify-content:space-between;gap:18px;
+    padding:16px var(--gut);flex:none;
+  }
+  .lb-top .label{color:rgba(244,244,241,.62)}
+  .lb-x{
+    background:none;border:0;cursor:pointer;color:rgba(244,244,241,.72);
+    font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;
+    padding:6px 2px;
+  }
+  .lb-x:hover{color:#fff}
+  .lb-stage{
+    flex:1;min-height:0;display:flex;align-items:center;justify-content:center;
+    gap:clamp(6px,2vw,22px);padding:0 clamp(6px,2vw,22px);
+  }
+  .lb-stage img{
+    max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;
+    background:#0d0d0b;
+  }
+  .lb-fig{
+    min-width:0;max-height:100%;display:flex;align-items:center;justify-content:center;
+  }
+  .lb-arrow{
+    flex:none;background:none;border:1px solid rgba(244,244,241,.26);cursor:pointer;
+    color:rgba(244,244,241,.8);width:42px;height:42px;font-size:17px;line-height:1;
+    transition:border-color .2s,color .2s,background .2s;
+  }
+  .lb-arrow:hover:not(:disabled){border-color:#fff;color:#fff;background:rgba(255,255,255,.07)}
+  .lb-arrow:disabled{opacity:.24;cursor:default}
+  .lb-cap{
+    flex:none;padding:14px var(--gut) 26px;color:rgba(244,244,241,.86);
+    display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;
+  }
+  .lb-cap .role{
+    font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;
+    color:var(--mark);
+  }
+  .lb-cap .txt{font-size:15.5px;font-weight:300;max-width:74ch;line-height:1.45}
+  @media (max-width:600px){
+    .lb-arrow{width:38px;height:38px}
+    .lb-stage{padding:0 4px}
+  }
 </style>
 </head>
 <body>
@@ -226,10 +346,17 @@
     <span class="divider" aria-hidden="true"></span>
     <span class="word">Look Library</span>
   </div>
+  <!-- Buttons rather than anchors: the URL hash is already the deep link to a
+       recipe (#003), so nav must not write to it. -->
+  <nav class="nav" aria-label="Sections">
+    <button class="navlink" type="button" data-nav="why">Why</button>
+    <button class="navlink" type="button" data-nav="index">Index</button>
+    <button class="navlink" type="button" data-nav="latest">Latest</button>
+  </nav>
   <div class="label" id="count">&nbsp;</div>
 </header>
 
-<section class="intro">
+<section class="intro" id="why">
   <h1>Nobody sets out to make mid work. It just happens to you.</h1>
   <p>You&rsquo;ve got the idea. You&rsquo;ve also got nine hours and a list of features. So you reach for whatever imagery is close enough, and the thing that was sharp in your head dies by a million papercuts and turns into lukewarm oatmeal by next Friday&rsquo;s review.</p>
   <p>Resist the oatmeal. To help, we&rsquo;re making a shelf of looks that are already solved. Not moodboards, recipes.</p>
@@ -249,6 +376,23 @@
 </footer>
 
 <div class="detail" id="detail" hidden role="dialog" aria-modal="true" aria-labelledby="d-title"></div>
+
+<!-- Fullscreen view for any frame or source plate. Stacks above the detail sheet. -->
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Full size image">
+  <div class="lb-top">
+    <span class="label" id="lb-seq"></span>
+    <button class="lb-x" type="button" id="lb-x">Close &nbsp;esc</button>
+  </div>
+  <div class="lb-stage">
+    <button class="lb-arrow" type="button" id="lb-prev" aria-label="Previous image">&#8592;</button>
+    <div class="lb-fig"><img id="lb-img" alt=""></div>
+    <button class="lb-arrow" type="button" id="lb-next" aria-label="Next image">&#8594;</button>
+  </div>
+  <div class="lb-cap">
+    <span class="role" id="lb-role"></span>
+    <span class="txt" id="lb-txt"></span>
+  </div>
+</div>
 
 <script>
 const SUPABASE_URL = "https://llnydhsfqyeyvckypxmk.supabase.co";
@@ -296,6 +440,24 @@ const SEED = [{
 }];
 
 const $ = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+
+/* Frames are full-size stills served from storage, so they land one by one.
+   Hold the box with a shimmer, fade the picture in when it decodes, and drop
+   the whole figure if the URL is dead rather than showing a broken icon. */
+function wireImages(root){
+  $$("img[data-fade]",root).forEach(img=>{
+    const box = img.closest("figure") || img.parentElement;
+    const done = ()=>{ img.classList.add("in"); if(box) box.classList.add("done"); };
+    if(img.complete && img.naturalWidth) done();
+    else img.addEventListener("load", done, {once:true});
+    img.addEventListener("error", ()=>{
+      const fig = img.closest("figure");
+      if(fig && fig.closest(".plate,.ref")) fig.closest(".plate,.ref").style.display="none";
+      else if(fig) fig.style.visibility="hidden";
+    }, {once:true});
+  });
+}
 const esc = s => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const no3 = n => String(n).padStart(3,"0");
 let LOOKS = [], FILTER = "all";
@@ -371,8 +533,8 @@ function renderGrid(){
   g.dataset.sparse = sparse?"true":"false";
   g.innerHTML = shown.map(l=>`
     <button class="tile" data-no="${l.look_no}" type="button">
-      <figure>
-        <img src="${esc(l.hero_url)}" alt="${esc(l.artist)}, ${esc(l.work||"")}" loading="lazy">
+      <figure class="shim">
+        <img src="${esc(l.hero_url)}" alt="${esc(l.artist)}, ${esc(l.work||"")}" loading="lazy" data-fade>
         <figcaption>
           <span class="no">${no3(l.look_no)}</span>
           <span class="nm">${esc(l.artist)}${l.work?`, <em>${esc(l.work)}</em>`:""}</span>
@@ -384,7 +546,7 @@ function renderGrid(){
     + (!shown.length?`<div class="awaiting"><span class="label">Nothing under that filter</span></div>`:"");
   $("#count").textContent = `${LOOKS.length} ${LOOKS.length===1?"recipe":"recipes"}`;
   g.querySelectorAll(".tile").forEach(b=>b.addEventListener("click",()=>open(Number(b.dataset.no))));
-  g.querySelectorAll("img").forEach(i=>i.addEventListener("error",()=>{i.style.visibility="hidden";}));
+  wireImages(g);
 }
 
 function renderDetail(l){
@@ -393,10 +555,26 @@ function renderDetail(l){
   /* Sections number themselves, so an entry with no source plates or no social
      links still reads 01, 02, 03 rather than skipping. */
   let sn = 0; const N = () => String(++sn).padStart(2,"0");
+
+  /* Step through the library in the order it is displayed, newest first. */
+  const order = visible().map(x=>Number(x.look_no));
+  const at = order.indexOf(Number(l.look_no));
+  const prevNo = at>0 ? order[at-1] : null;              // newer
+  const nextNo = at>=0 && at<order.length-1 ? order[at+1] : null;  // older
+
+  /* One flat gallery for the lightbox: source plates first, then the frames,
+     in the order they appear on the page. */
+  GAL = refs.map(r=>({url:r.url, role:"Source plate", txt:[r.credit,r.note].filter(Boolean).join(" — ")}))
+    .concat((l.frames||[]).map(f=>({url:f.url, role:f.role||"Frame", txt:f.caption||""})));
+  let gi = -1; const GX = () => ++gi;
   $("#detail").innerHTML = `
     <div class="bar">
       <span class="label">${no3(l.look_no)} &nbsp;·&nbsp; ${esc(l.artist)} &nbsp;·&nbsp; ${esc(l.captured_on)}</span>
-      <button class="close" type="button" id="close">Close</button>
+      <span class="seq">
+        <button type="button" id="prev" ${prevNo==null?"disabled":""} aria-label="Previous recipe">&#8592;</button>
+        <button type="button" id="next" ${nextNo==null?"disabled":""} aria-label="Next recipe">&#8594;</button>
+        <button class="close" type="button" id="close">Close &nbsp;esc</button>
+      </span>
     </div>
 
     <div class="head">
@@ -415,8 +593,8 @@ function renderDetail(l){
     <section class="step">
       <div class="stephead"><span class="n">${N()}</span><h3>The source</h3><span class="aside">${refs.length} plates</span></div>
       <div class="refs">
-        ${refs.map(r=>`<div class="ref"><figure>
-          <img src="${esc(r.url)}" alt="Reference by ${esc(r.credit||l.artist)}" loading="lazy">
+        ${refs.map(r=>`<div class="ref"><figure class="shim">
+          <img class="zoom" data-gal="${GX()}" src="${esc(r.url)}" alt="Reference by ${esc(r.credit||l.artist)}" loading="lazy" data-fade>
           <figcaption><span class="cr label">${esc(r.credit||l.artist)}</span>${esc(r.note||"")}</figcaption>
         </figure></div>`).join("")}
       </div>
@@ -463,8 +641,8 @@ function renderDetail(l){
     <section class="step">
       <div class="stephead"><span class="n">${N()}</span><h3>What it yields</h3><span class="aside">one method, four subjects</span></div>
       <div class="yield">
-        ${(l.frames||[]).map(f=>`<div class="plate"><figure>
-          <img src="${esc(f.url)}" alt="${esc(f.caption)}" loading="lazy">
+        ${(l.frames||[]).map(f=>`<div class="plate"><figure class="shim">
+          <img class="zoom" data-gal="${GX()}" src="${esc(f.url)}" alt="${esc(f.caption)}" loading="lazy" data-fade>
           <figcaption><span class="role">${esc(f.role)}</span><span class="cap">${esc(f.caption)}</span></figcaption>
         </figure></div>`).join("")}
       </div>
@@ -480,9 +658,12 @@ function renderDetail(l){
     </section>`;
 
   $("#close").addEventListener("click", close);
-  $("#detail").querySelectorAll("img").forEach(i=>i.addEventListener("error",()=>{
-    i.closest("figure").style.display="none";
-  }));
+  const pv=$("#prev"), nx=$("#next");
+  if(prevNo!=null) pv.addEventListener("click",()=>open(prevNo));
+  if(nextNo!=null) nx.addEventListener("click",()=>open(nextNo));
+  wireImages($("#detail"));
+  $$(".zoom",$("#detail")).forEach(img=>
+    img.addEventListener("click",()=>lbOpen(Number(img.dataset.gal))));
   const cp=$("#copy");
   if(cp) cp.addEventListener("click",()=>{
     navigator.clipboard.writeText(l.treatment).then(()=>{
@@ -490,6 +671,52 @@ function renderDetail(l){
     }).catch(()=>{cp.textContent="Select manually";});
   });
 }
+
+/* ---------- lightbox ----------
+   GAL is rebuilt by renderDetail for whichever recipe is open. The lightbox
+   stacks above the detail sheet, so closing it returns you to the page you
+   were reading rather than to the index. */
+let GAL = [], LBI = 0, LBFROM = null;
+
+function lbShow(){
+  const it = GAL[LBI]; if(!it) return;
+  const img = $("#lb-img");
+  img.classList.remove("in");
+  img.src = it.url;
+  img.alt = it.txt || it.role || "";
+  $("#lb-role").textContent = it.role || "";
+  $("#lb-txt").textContent  = it.txt  || "";
+  $("#lb-seq").textContent  = `${LBI+1} / ${GAL.length}`;
+  $("#lb-prev").disabled = LBI<=0;
+  $("#lb-next").disabled = LBI>=GAL.length-1;
+  if(img.complete && img.naturalWidth) img.classList.add("in");
+  else img.addEventListener("load",()=>img.classList.add("in"),{once:true});
+}
+function lbOpen(i){
+  if(!GAL.length) return;
+  LBI = Math.max(0, Math.min(i, GAL.length-1));
+  LBFROM = document.activeElement;
+  $("#lb").hidden = false;
+  document.body.style.overflow = "hidden";
+  lbShow();
+  $("#lb-x").focus();
+}
+function lbClose(){
+  $("#lb").hidden = true;
+  $("#lb-img").src = "";
+  /* The detail sheet underneath keeps its own scroll lock. */
+  if($("#detail").hidden) document.body.style.overflow = "";
+  if(LBFROM && LBFROM.isConnected) LBFROM.focus();
+}
+function lbStep(d){
+  const n = LBI + d;
+  if(n<0 || n>=GAL.length) return;
+  LBI = n; lbShow();
+}
+$("#lb-x").addEventListener("click", lbClose);
+$("#lb-prev").addEventListener("click", ()=>lbStep(-1));
+$("#lb-next").addEventListener("click", ()=>lbStep(1));
+$("#lb").addEventListener("click", e=>{ if(e.target.id==="lb"||e.target.classList.contains("lb-stage")) lbClose(); });
 
 function open(n){
   const l=LOOKS.find(x=>Number(x.look_no)===n); if(!l) return;
@@ -503,11 +730,50 @@ function close(){
   $("#detail").hidden=true; document.body.style.overflow="";
   if(location.hash) history.pushState({},"",location.pathname);
 }
-addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#detail").hidden)close();});
+/* Keyboard: the lightbox is on top, so it consumes keys first. */
+addEventListener("keydown",e=>{
+  if(!$("#lb").hidden){
+    if(e.key==="Escape"){ e.preventDefault(); lbClose(); }
+    else if(e.key==="ArrowLeft")  lbStep(-1);
+    else if(e.key==="ArrowRight") lbStep(1);
+    return;
+  }
+  if(!$("#detail").hidden){
+    if(e.key==="Escape") close();
+    else if(e.key==="ArrowLeft"){ const b=$("#prev"); if(b&&!b.disabled) b.click(); }
+    else if(e.key==="ArrowRight"){ const b=$("#next"); if(b&&!b.disabled) b.click(); }
+  }
+});
 addEventListener("popstate",()=>{
   const m=location.hash.match(/^#(\d+)$/);
   if(m)open(Number(m[1])); else {$("#detail").hidden=true;document.body.style.overflow="";}
 });
+
+/* ---------- global nav ---------- */
+function wireNav(){
+  const go = el => el && el.scrollIntoView({behavior:"smooth", block:"start"});
+  $$(".navlink").forEach(b=>b.addEventListener("click",()=>{
+    const k=b.dataset.nav;
+    if(!$("#detail").hidden) close();
+    if(k==="why")   go($("#why"));
+    if(k==="index") go($("#grid"));
+    if(k==="latest"){
+      const top = visible()[0] || LOOKS[0];
+      if(top) open(Number(top.look_no));
+    }
+  }));
+
+  /* Mark whichever section is under the masthead. Latest is an action, not a
+     place, so it never lights up. */
+  const mark = () => {
+    if(!$("#detail").hidden){ $$(".navlink").forEach(b=>b.classList.remove("on")); return; }
+    const g=$("#grid").getBoundingClientRect();
+    const on = g.top <= 140 ? "index" : "why";
+    $$(".navlink").forEach(b=>b.classList.toggle("on", b.dataset.nav===on));
+  };
+  addEventListener("scroll", mark, {passive:true});
+  mark();
+}
 
 (async()=>{
   LOOKS=await load();
@@ -515,6 +781,7 @@ addEventListener("popstate",()=>{
   LOOKS.sort((a,b)=>b.look_no-a.look_no);
   renderFilters();
   renderGrid();
+  wireNav();
   const m=location.hash.match(/^#(\d+)$/);
   if(m)open(Number(m[1]));
 })();
