@@ -79,13 +79,44 @@ cron is moved to `0 0 * * 2,4,6`.
 
 ## Generation settings
 
-4 generations per run, model **`is2i-gemini-3-pro`** (Nano Banana Pro), 2K, 1:1 unless the look
-demands otherwise. Measured cost $0.18 each, $0.72 per run, roughly $9/month.
+4 generations per run, one `flora_generate` call per frame.
 
-The id is `is2i-` — verified working 8 Sep 2026. Earlier notes here said `i2i-gemini-3-pro`,
-which is not a real id and fails the call, and said Flora reports `t2i-gemini-3-pro`; the
-generation history reports `is2i-gemini-3-pro`. Capabilities are `images-to-image`, so it wants
-at least one reference. Params: `resolution` 1K/2K/4K, `aspect_ratio`, `seed`.
+### Default model: GPT Image 2
+
+```
+model  = "i2i-gpt-image-2-i2i"
+params = {"aspect_ratio": "16:9"}     // or match the plates
+```
+
+**Use this unless there is a reason not to.** Chosen 8 Sep 2026 after an eight-way test against
+the same plates and subject — four models on an identical string, four different briefs. It was
+the only one that came back looking photographed rather than rendered. It also picks up the
+plates' own dimensions on its own, and leaving `resolution` at its default (1k) is deliberate:
+pushing it higher reintroduces the crispness the look is trying to avoid.
+
+Cost about $0.27 per frame, roughly $1.08 per run. Slow, around 90–220s each, so fire all four
+and poll rather than waiting on one at a time.
+
+Params: `quality` low/medium/high, `aspect_ratio`, `resolution` 1k/2k/4k.
+
+### The alternative, and when it is wrong
+
+`is2i-gemini-3-pro` (Nano Banana Pro), 2K, $0.18 a frame, faster. It composes cleanly and holds
+a brief well, but its house style is glossy: clean skin, everything evenly exposed and legible,
+crowds arranged facing camera. Fine for a look that is genuinely clean and modern. Wrong for
+anything that has to read as photographed, film-era, or documentary.
+
+Note the id prefix. `i2i-gemini-3-pro` is not a real id and fails the call; the working one is
+`is2i-gemini-3-pro`. Flora reports executed ids with an `is2i-` prefix regardless of which
+prefix you pass, so do not read the reported id as a sign the wrong model ran.
+
+### The rule underneath
+
+**Model choice is not a detail, it is half the look.** Escalating the prompt cannot make a model
+do what it does not do — the brief that asked hardest for a scratched, dusty, gate-weaving print
+produced the sharpest, cleanest image of the whole test. If two attempts come back wrong in the
+same way, change the model rather than the wording. See `run-procedure.md` §5d for the full
+results table and the anti-gloss language that made the difference.
 
 ## Flora canvas wiring, with the traps
 
@@ -147,5 +178,5 @@ Do not repeat an artist or treatment on this list. Next look is **004**.
 | # | Date | Artist | Work | Lane | Status |
 |---|------|--------|------|------|--------|
 | 001 | 2026-09-04 | Ana Paganini | "200 Summers Later" | current | Transfers well, and the anachronism device is strong. But the look is built on stillness and would NOT pass the energy filter added after this run. Kept as a reference point for what the library is steering away from. |
-| 002 | 2026-09-06 | Hype Williams | "Hype Flood" | archive | Rebuilt twice on 8 Sep and now holds. First rebuild fixed the extraction: the old string described the artist's reputation, not the plates, so it returned a glass ball floating in black. Second rebuild fixed the AI sheen by switching model and brief after an eight-way test — GPT Image 2 with an anti-gloss paragraph about skin and fabric was the only one that read as photographed. Detail energy now 2.9-4.3 against the plates' 1.5-2.2; the first approach was 7.1. Product: smart glasses. Cyan on the court frame is the least saturated of the four and could be pushed. |
+| 002 | 2026-09-06 | Hype Williams | "Hype Flood" | archive | Settled 8 Sep after three passes. Pass 1 fixed the extraction — the old string described the artist's reputation rather than the plates, so it returned a glass ball floating in black. Pass 2 fixed the AI sheen: an eight-way test picked GPT Image 2 with an anti-gloss brief about skin and fabric. Pass 3 added crushed darks, named accidental framing and swagger caught mid-movement. Grain energy now 2.3-5.9 against the plates' 1.5-2.2; the first approach was 7.1. Product: smart glasses, reads well against the flat colour field. |
 | 003 | 2026-09-07 | William Klein | "Vogue in the Street" | archive | Retested 8 Sep and it passes. Skate and football frames regenerated with nothing changed but the treatment string; both now smear subject and background together with one sharp anchor. Naming the failure explicitly in the string was the whole fix. Three of four captions were on the wrong pictures; fixed 8 Sep. No product, predates the rule. |

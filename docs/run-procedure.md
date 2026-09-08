@@ -161,6 +161,26 @@ The result had matte unlit skin, a crowd doing its own thing, genuine unreadable
 instead of everything exposed, a matte creased jacket instead of a glossy balloon, and real
 clutter in frame — an exit sign, speaker boxes, a pillar cropping the edge.
 
+### A second pass got it the rest of the way
+
+The chosen approach was still a little too composed and too well exposed. Three additions closed
+it, and they are worth adding to any look that needs to read as photographed:
+
+- **Crushed darks, stated as a refusal.** "Most of the frame falls away into unreadable dark and
+  stays there; do not expose for legibility." Models want everything visible; say that you do not.
+- **Accidental framing, described concretely.** Subject pushed off-centre toward one edge, heads
+  and limbs cropped by the frame, a shoulder or the back of a head blocking the near foreground,
+  horizon slightly off level, dead space where a composed shot would not leave it. "Imperfect
+  framing" on its own does nothing — name the specific accidents.
+- **Attitude over pose.** "Real attitude and effortless swagger — people who know the camera is
+  there and do not care, caught mid-movement between poses rather than arranged in one." This
+  replaced an earlier instruction to be "still and deadpan", which had flattened the subjects
+  into mannequins. Deadpan is not the same as absent.
+
+Measured against the plates (grain/detail energy 1.5–2.2), the progression on the club frame was
+7.1 for the original technical string, 2.9 for the anti-gloss brief, and 2.8 after this pass,
+with the share of the frame in true black rising to 71%.
+
 Two things to carry forward:
 
 - **Add an anti-gloss paragraph to every treatment string**, before the subject clause. Describe
