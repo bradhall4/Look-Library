@@ -82,6 +82,18 @@ select * from public.runbook_apply();
 `runbook_fetch(branch)` takes an optional branch name if you want to test doc changes from a
 branch before merging.
 
+**Verify the sync actually took.** `raw.githubusercontent.com` is CDN-cached, so a sync run
+immediately after a push can be served the previous version — and because it still returns 200
+and reports `applied = true`, it looks like it worked. This happened on 8 Sep: two corrected
+docs synced clean and the database kept the old text. `runbook_fetch` now appends a unique
+query string per call so each fetch is its own cache key, but check anyway when it matters:
+
+```sql
+select slug, length(body), updated_at from public.runbook order by slug;
+```
+
+If the byte count is identical to the previous sync after a real edit, it did not take.
+
 ## The objects involved
 
 | Object | What it does |
