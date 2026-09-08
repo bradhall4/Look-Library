@@ -25,6 +25,13 @@ deploy.** Only changes to the page's own code do.
   nowhere else. The mark has enough personality to run the whole page, and a reference library
   that looks like a games brand stops reading as reference.
 - Cool near-white ground, printer's red as the only accent, hairline rules.
+- A global nav sits in the masthead: Why, Index, Latest. They are buttons, not anchors, because
+  the URL hash is already the deep link to a recipe (`#003`).
+- Every source plate and frame opens in a fullscreen lightbox: one flat gallery per recipe with
+  the plates first, arrow keys to step, Escape to close it without closing the recipe beneath.
+- Arrow keys also step between recipes from the detail bar.
+- Images hold their box with a shimmer and fade in as they decode, so the grid does not jump
+  while full-size frames arrive.
 - Index is one tile per look. Detail view is four numbered sections: **01 The source** (original
   plates, credited, each noting what it demonstrates), **02 The recipe** (ingredients, palette,
   the copyable method, the device underneath), **03 What it yields** (generated frames plus the
@@ -48,7 +55,11 @@ Smoke-tested against deliberately messy rows with no page errors.
 
 ## Deploying
 
-From a machine with normal network access:
+`bradhall4/Look-Library` (capital L, hyphen — the lowercase name in older notes does not exist)
+is pushed and linked in Netlify under Continuous deployment, so **deploying the page is a push
+to `main`**. Adding a look still needs no deploy at all.
+
+Fallback, from a machine with normal network access:
 
 ```
 cd "~/Claude/Projects/2Player/Look Library/site"

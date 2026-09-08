@@ -1,9 +1,15 @@
 # Look Library — handoff to Claude Code
 
 Written 8 September 2026 at the end of the Cowork session that built this. Read this first,
-then the operating rules in `docs/` alongside this file: `config.md`, `product-rule.md`,
-`social-fridays.md`, `site.md`. The same documents also live in the attached Claude project
-under `claude/look-library-*.md`; the copies in `docs/` are the ones that travel with the repo.
+then the operating rules in `docs/` alongside this file: `config.md`, `run-procedure.md`,
+`product-rule.md`, `social-fridays.md`, `site.md`. The same documents also live in the attached
+Claude project under `claude/look-library-*.md`; the copies in `docs/` are the ones that travel
+with the repo.
+
+**The two copies are not synced.** The scheduled cloud task reads the Claude project copies, so
+any correction made here in `docs/` has to be pasted back into the Claude project before the
+next run picks it up. `config.md` and `run-procedure.md` were both corrected on 8 Sep — see the
+change log at the end of this file.
 
 ## What this is
 
@@ -138,3 +144,31 @@ Neither 002 nor 003 has a product yet; the product rule was added after those ru
 - **Do not declare a run failed because a list looks empty.** Flora projects can appear minutes
   after a run reports in. Checking too early once caused a wrong "it produced nothing" call,
   which then caused a look-numbering collision.
+
+## Change log — 8 September 2026, Claude Code session
+
+Corrections made to `docs/` that **must be pasted back into the Claude project** before the next
+scheduled run, or the run will repeat the bugs they fix.
+
+**`config.md`**
+
+- Generation model id was `i2i-gemini-3-pro`, which is not a real id and fails the call. The
+  working id is **`is2i-gemini-3-pro`**. Verified by four successful generations.
+- The Flora section recommended the mermaid-graph `flora_run_canvas_nodes` path. That path is
+  the direct cause of the caption misassignment that hit all three looks. Replaced with
+  `flora_generate`, one call per frame, which returns one run id per call.
+- Ledger entries for 002 and 003 refreshed with what is actually true after the retest.
+- Added a rule that the output must be checked against the plates, not just against the words,
+  and a rule that `hook` is a lesson about the artist rather than a teaser.
+
+**`run-procedure.md`** — new. The step-by-step for one autonomous run, including the canonical
+INSERT with every column the site reads. This was the largest gap: no document previously told
+a fresh session how to actually publish a row.
+
+**Verified working end to end on 8 Sep**, so a run needs no human and no Claude Code:
+
+- `pg_net` 0.20.4 is enabled; `net.http_post` to `mirror-frame` returned 200 and wrote 813,690
+  bytes into the `frames` bucket from SQL alone.
+- The site reads Supabase at runtime, so an inserted row appears with no deploy.
+- A stray probe object from that test sits at `_selftest/pg-net-probe.png` in the bucket. It is
+  invisible to the site and harmless; delete it whenever the storage API is next to hand.

@@ -4,6 +4,13 @@ Standing setup for the three-times-a-week art direction look routine. A fresh sc
 session should read this first: it holds every id the run needs and the ledger of what has
 already been covered.
 
+**Then read `run-procedure.md`**, which is the step-by-step sequence for one run, including the
+canonical INSERT that publishes a look. Writing that row IS publishing: the site reads Supabase
+at runtime, so nothing needs deploying and no human step follows.
+
+Also in this folder: `product-rule.md` (the product in every look from 004 on), `site.md` (the
+page itself), `social-fridays.md` (the Friday format).
+
 **Before writing anything to the ledger, read it first and take the next number after the
 highest entry.** Two runs collided on 002 because a ledger entry was overwritten by hand.
 
@@ -72,23 +79,35 @@ cron is moved to `0 0 * * 2,4,6`.
 
 ## Generation settings
 
-4 generations per run, model `i2i-gemini-3-pro` (Nano Banana Pro), 2K, 1:1 unless the look
-demands otherwise. Measured cost $0.18 each, $0.72 per run, roughly $9/month. Flora reports the
-executed model id as `t2i-gemini-3-pro` even with reference edges wired; verified by eye that the
-reference does reach the model, so ignore the reported id.
+4 generations per run, model **`is2i-gemini-3-pro`** (Nano Banana Pro), 2K, 1:1 unless the look
+demands otherwise. Measured cost $0.18 each, $0.72 per run, roughly $9/month.
+
+The id is `is2i-` — verified working 8 Sep 2026. Earlier notes here said `i2i-gemini-3-pro`,
+which is not a real id and fails the call, and said Flora reports `t2i-gemini-3-pro`; the
+generation history reports `is2i-gemini-3-pro`. Capabilities are `images-to-image`, so it wants
+at least one reference. Params: `resolution` 1K/2K/4K, `aspect_ratio`, `seed`.
 
 ## Flora canvas wiring, with the traps
 
+**For proof frames, do not use the canvas-graph path at all. Use `flora_generate`, one call per
+frame, passing the plate node ids as `reference_node_ids`.** It returns one `run_id` per call, so
+each output is bound to the frame you asked for. The canvas-graph path returns run ids in a
+different order than the nodes were passed, and that is how looks 001, 002 and 003 all shipped
+with captions on the wrong pictures. See `run-procedure.md` step 6.
+
 `flora_create_asset` with `project_id` set fetches the image server-side and lands it as its own
-canvas node, id `mcp_upload_<asset suffix>`. Read ids with `flora_list_assets` (note:
-`flora_list_canvas_nodes` has been blocked by the auto-mode classifier), then
-`flora_add_to_canvas` with bare node ids on both sides of the edge. Then `flora_run_canvas_nodes`.
+canvas node, id `mcp_upload_<asset suffix>`. Read ids with `flora_list_assets`, or with
+`flora_list_canvas_nodes`, which worked normally from Claude Code on 8 Sep even though it had
+been blocked by the auto-mode classifier in Cowork.
+
+The mermaid graph notes below still apply if you ever build a multi-stage canvas:
 
 - A mermaid node label becomes that node's prompt, so a node declared with a label AND a
   `content_url` is rejected as mutually exclusive. Never declare reference nodes in the diagram.
 - The keyword must be `graph LR`. `flowchart LR` is silently unrecognised and drops every edge
   while still creating the nodes.
-- Run ids return in a different order than the node ids passed. Match outputs by looking at them.
+- Run ids return in a different order than the node ids passed. Match outputs by looking at
+  them. This has bitten every multi-frame run so far, three for three.
 
 Flora's fetch allowlist is far broader than its docs imply. `m.itsnicethat.com` worked directly.
 Test rather than assume a host is blocked.
@@ -111,6 +130,12 @@ Institutional fallbacks when those 403: Wikimedia Commons, MoMA, Tate, ICP.
   youth-facing, campaign-plausible subject.
 - **State the frame as what IS in it.** Negative instructions get ignored by the model.
 - **Look at the reference before writing the card, and at the output before publishing.**
+- **Check the output against the plates, not just against the words.** The recurring failure is
+  the model taking a term in the treatment literally rather than reproducing what the plates
+  show — look 002 said "fisheye" and produced a glass ball floating in black. If the frame does
+  not resemble the plates, the treatment is describing a word, not the look. Rewrite and rerun.
+- **The `hook` column is a lesson, not a teaser.** One or two sentences on who the artist is,
+  how they work, and what the look consists of.
 - **Do not declare a run failed because a list looks empty.** Flora projects and rows can appear
   minutes after a run reports in. Check twice, some time apart, before concluding anything.
 - Alternate lanes roughly half current / half kinetic archive.
@@ -122,5 +147,5 @@ Do not repeat an artist or treatment on this list. Next look is **004**.
 | # | Date | Artist | Work | Lane | Status |
 |---|------|--------|------|------|--------|
 | 001 | 2026-09-04 | Ana Paganini | "200 Summers Later" | current | Transfers well, and the anachronism device is strong. But the look is built on stillness and would NOT pass the energy filter added after this run. Kept as a reference point for what the library is steering away from. |
-| 002 | 2026-09-06 | Hype Williams | "Fisheye Chrome Maximalism" | archive | Car interior frame is strong. Three of four rendered a circular fisheye floating in black; treatment string since rewritten to say full-frame barrel distortion. DJ frame fails, regenerate it. |
-| 003 | 2026-09-07 | William Klein | "Vogue in the Street" | archive | Proximity and crop right, subject came back frozen sharp so the slow-shutter mechanism did not transfer. Treatment string rewritten to say BOTH subject and background smear. Needs retesting. |
+| 002 | 2026-09-06 | Hype Williams | "Fisheye Chrome Maximalism" | archive | DJ frame regenerated 8 Sep and now holds, 64% picture coverage against 48%. The curved corner-masked rendering survived three prompt rewrites including an explicit full-bleed instruction, but the car frame everyone likes is curved too, so the curve is not the defect — judge what the curve encloses. Chrome puffer is the strongest frame at 65%; the basketball frame is weakest at 43% and is the one to regenerate next. Puffer and basketball captions were swapped; fixed 8 Sep. No product, predates the rule. |
+| 003 | 2026-09-07 | William Klein | "Vogue in the Street" | archive | Retested 8 Sep and it passes. Skate and football frames regenerated with nothing changed but the treatment string; both now smear subject and background together with one sharp anchor. Naming the failure explicitly in the string was the whole fix. Three of four captions were on the wrong pictures; fixed 8 Sep. No product, predates the rule. |
