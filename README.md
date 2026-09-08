@@ -19,10 +19,17 @@ db/setup.sql               schema, RLS policy, storage bucket, and look 001
 ## Deploying
 
 `site/index.html` is the entire site. No build step, no dependencies beyond Google Fonts.
-Drag the `site` folder onto the `look-library` project in Netlify and it is live.
+`netlify.toml` publishes the `site` folder with no build command.
 
-Automated deploys do not currently work: the Netlify MCP upload is refused from Claude's
-sandbox (403) and from the local shell (fetch failed), so deploys are manual for now.
+This repo is `bradhall4/Look-Library`. Once it is linked to the Netlify project under
+Project configuration -> Continuous deployment, deploying is a push to `main`.
+
+Until it is linked, deploys are manual: drag the `site` folder onto the project in Netlify.
+The earlier note here blaming a sandbox 403 no longer applies -- that was a Cowork egress
+limit, not a Netlify one, and it does not affect this machine.
+
+Remember that only changes to the page's own code need a deploy at all. Adding a look writes
+to Supabase, and the site picks it up on the next page load.
 
 ## The data
 
