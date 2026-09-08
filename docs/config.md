@@ -88,11 +88,17 @@ model  = "i2i-gpt-image-2-i2i"
 params = {"aspect_ratio": "16:9"}     // or match the plates
 ```
 
-**Use this unless there is a reason not to.** Chosen 8 Sep 2026 after an eight-way test against
-the same plates and subject — four models on an identical string, four different briefs. It was
-the only one that came back looking photographed rather than rendered. It also picks up the
-plates' own dimensions on its own, and leaving `resolution` at its default (1k) is deliberate:
-pushing it higher reintroduces the crispness the look is trying to avoid.
+**Use this when the plates are photographic, film-era, degraded or documentary** — which is most
+of the archive lane. Chosen 8 Sep 2026 after an eight-way test against the same plates and
+subject: four models on an identical string, four different briefs. It was the only one that came
+back looking photographed rather than rendered. It picks up the plates' own dimensions on its
+own, and leaving `resolution` at its default (1k) is deliberate for that kind of look, because
+pushing it higher reintroduces crispness.
+
+**It is not the automatic answer.** Pick the model against what the evidence table says the
+plates are, the same way you pick the treatment string. A glossy, hyperreal, immaculately
+retouched look — LaChapelle is on the archive list — wants the opposite of this model's
+strengths, and 1k would just make it look cheap.
 
 Cost about $0.27 per frame, roughly $1.08 per run. Slow, around 90–220s each, so fire all four
 and poll rather than waiting on one at a time.

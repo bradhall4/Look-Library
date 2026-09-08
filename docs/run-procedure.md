@@ -181,13 +181,44 @@ Measured against the plates (grain/detail energy 1.5–2.2), the progression on 
 7.1 for the original technical string, 2.9 for the anti-gloss brief, and 2.8 after this pass,
 with the share of the frame in true black rising to 71%.
 
-Two things to carry forward:
+### What generalises, and what does not
 
-- **Add an anti-gloss paragraph to every treatment string**, before the subject clause. Describe
-  skin, fabric, and how people are behaving. Technical camera specs alone will not get you there.
-- **Try at least two models before settling.** Asking a model harder for what it does not do is
-  wasted money — test G proves it. `i2i-gpt-image-2-i2i` is the current default for looks that
-  need to read as photographed; it also matched the plates' native dimensions on its own.
+Everything above was learned on one look. Most of it is specific to that look. Keep the method,
+throw away the settings.
+
+**Always, for any look:**
+
+- Decompose the plates before writing anything, and keep only what three of five support.
+- **Describe the model's output failure in the vocabulary of the failure.** Look 002 came back
+  too glossy, so the fix was language about skin, fabric and behaviour. A look that comes back
+  too muddy, too flat, too busy or too static needs the opposite vocabulary. The transferable
+  rule is *name the axis you are failing on and write to it* — not "add grain".
+- **Match the model to the medium in the plates**, and test at least two before settling.
+  Escalating the prompt cannot make a model do what it does not do.
+- Check the output against the plates, not against your prompt.
+
+**Only when the plates call for it:**
+
+- Grain, crushed blacks, halation, muddy compression, soft mushy detail, anti-gloss language
+  about pores and worn fabric, accidental framing, swagger caught mid-movement, GPT Image 2 at
+  1k. **All of that is Hype Flood's answer, not the library's.**
+
+**The worked counter-example.** `config.md` points the archive lane at David LaChapelle, among
+others. LaChapelle is glossy on purpose: saturated, hyperreal, immaculate skin, elaborate
+constructed staging, everything lit and legible. Running the look-002 conclusions on a
+LaChapelle plate set would destroy it — anti-gloss language, crushed blacks and accidental
+framing are all *precisely wrong* there. The correct treatment for LaChapelle would ask for
+retouched perfection, deliberate symmetry, and a composed frame, and would probably pick a
+different model for exactly that reason.
+
+The same applies to a clean modern studio look, a bright daylight fashion look, or anything
+shot digitally. If the evidence table says the plates are sharp, clean and evenly lit, then
+sharp, clean and evenly lit is the correct answer, and Nano Banana Pro is likely the better
+model.
+
+**If a treatment string you are writing could have been written without opening the plates, it
+is wrong.** That test catches both failure modes: writing the artist's reputation, and pasting
+forward the last look's settings.
 
 ### 5e. Then write it
 
