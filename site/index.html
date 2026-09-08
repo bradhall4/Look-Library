@@ -67,6 +67,18 @@
     color:var(--ink);font-weight:400;max-width:40ch;
   }
   .intro .label{display:block;margin-top:28px;padding-top:20px;border-top:1px solid var(--rule)}
+  /* Numbered steps. Counter rather than list-style so the numerals can take the
+     mono face and the mark colour, matching the section numbers in the detail view. */
+  ol.steps{list-style:none;counter-reset:s;margin-top:22px;max-width:56ch}
+  ol.steps li{
+    counter-increment:s;position:relative;padding-left:34px;
+    font-size:16px;font-weight:300;color:var(--ink-2);line-height:1.5;
+  }
+  ol.steps li + li{margin-top:11px}
+  ol.steps li::before{
+    content:counter(s);position:absolute;left:0;top:.15em;
+    font-family:var(--mono);font-size:11px;font-weight:600;color:var(--mark);
+  }
 
   /* ---------- filters, only once there is enough to filter ---------- */
   .filters{display:flex;flex-wrap:wrap;gap:8px;padding:0 var(--gut) 26px}
@@ -357,10 +369,14 @@
 </header>
 
 <section class="intro" id="why">
-  <h1>Nobody sets out to make mid work. It just happens to you.</h1>
-  <p>You&rsquo;ve got the idea. You&rsquo;ve also got nine hours and a list of features. So you reach for whatever imagery is close enough, and the thing that was sharp in your head dies by a million papercuts and turns into lukewarm oatmeal by next Friday&rsquo;s review.</p>
-  <p>Resist the oatmeal. To help, we&rsquo;re making a shelf of looks that are already solved. Not moodboards, recipes.</p>
-  <p>Pull one off the shelf when it fits the concept. Cook a new one when the concept demands it. Either way you walk into the sell-in with the look already made, instead of asking the room to squint and imagine it.</p>
+  <h1>No more mid work.</h1>
+  <p>You&rsquo;ve got the idea. You&rsquo;ve also got nine hours and a list of features. So you reach for whatever imagery is close enough. And the client wants tight mocks. And the thing that was sharp in your head turns into lukewarm slop oatmeal. Resist the oatmeal.</p>
+  <ol class="steps">
+    <li>Here&rsquo;s a shelf of looks that are already solved. Not moodboards, recipes.</li>
+    <li>Pull one off the shelf when it fits the concept.</li>
+    <li>Cook a new one when the concept demands it.</li>
+    <li>Walk into the pitch with the look nailed, instead of asking the room to squint and imagine it.</li>
+  </ol>
   <span class="label" id="accession">Opened 4 September 2026 &nbsp;·&nbsp; New entries Monday, Wednesday, Friday</span>
 </section>
 
