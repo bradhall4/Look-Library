@@ -30,29 +30,35 @@ Rotate the category across runs. Do not do phones three times running.
   hero-lit on a plinth, not centred like a pack shot unless the look itself is a still life.
 - The treatment string is unchanged. The product enters through the subject clause only. That
   is the whole point: proof the recipe survives a commercial object.
-- No added type, no logos composed into the frame, no packaging graphics, no campaign design.
-  These are raw shoot outputs, not layouts.
+- **The frame is a photograph, not a layout.** No type set over the image, no logo lockups, no
+  headline, no campaign design, no packaging art direction. Nothing that belongs to a designer
+  rather than a photographer. These are raw shoot outputs.
+- **Branding that would naturally be on the object is fine**, and is often the point — a mark on
+  a can, a swoosh on a shoe, a wordmark on a jersey. The test is whether a real photographer
+  shooting that product would have it in frame. Printed on the thing: yes. Composited over the
+  picture: no.
 
-## Describe form, not brand
+## Describe form first — a craft default, not a ban
 
-**Write the product by its physical characteristics rather than its brand name.** This is a
-craft rule before it is a caution:
+**Default to describing the product by its physical characteristics rather than its brand name.**
+This is a craft rule, not a policy one:
 
-- Image models render real logos and wordmarks badly. A mangled almost-logo makes an otherwise
-  good frame unusable and reads as cheap.
-- The brand's silhouette is usually what carries recognition anyway. "A slim glass and aluminium
-  phone, matte sage, wide horizontal camera bar across the upper back" reads as the right object
-  without a single letterform.
-- It keeps the output honest. These are look tests, not mockups of a real brand's campaign.
+- Image models render letterforms badly. A mangled almost-logo makes an otherwise good frame
+  unusable and reads as cheap — far worse than no logo at all.
+- The silhouette usually carries the recognition anyway. "A slim glass and aluminium phone,
+  matte sage, wide horizontal camera bar across the upper back" reads as the right object
+  without a single letter in it.
 
 Good: "a breaded chicken fillet in a plain white paper wrapper, waxed paper, pickle visible".
-Bad: "a Chick-fil-A sandwich".
+Weaker: "a Chick-fil-A sandwich" — you will probably get mangled type on the wrapper.
 
-Good: "wraparound sport sunglasses, single curved lens, matte black frame, iridescent coating".
-Bad: "Oakleys".
+**Name a brand when the brand is the point.** Adapting a look for a specific client is a real
+use of this library. When you do, expect the mark to come back imperfect: judge the frame on the
+light and the world, and plan to comp or retouch the product afterwards. Say in the verdict
+whether the mark survived, the same way you would say whether the product did.
 
-Where a brand is genuinely the point, name the category and the distinguishing form, then comp
-the real product in afterwards in post. The generated frame is the lighting and world test.
+What is never acceptable is a generated frame passed off as a real brand's campaign. These are
+look tests.
 
 ## Recording it
 
