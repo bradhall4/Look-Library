@@ -31,6 +31,24 @@ select * from public.publish_look(4);
 
 Going back to instant publishing is one policy: `using (status = 'published')` -> `using (true)`.
 
+## The queue
+
+Artists and looks Brad wants covered. The run takes the oldest pending entry before falling back
+to the selection filter.
+
+```sql
+select * from public.queue_add('Artist Name', 'why, and where the references are', 'https://...');
+select id, artist, status, added_at from public.queue order by added_at;
+```
+
+`queue_next()` is what the run reads; `queue_mark_used(id, look_no)` closes an entry once the
+look publishes. Status is `pending`, `used` or `skipped`.
+
+Note that many artist links are not fetchable — Instagram in particular is login-walled, and a
+share link with an `stkn` token is tied to one person's session and should not be stored. Put a
+durable public source in `source_url` (portfolio, agency page, editorial coverage) and leave the
+social link out of it.
+
 ## The operating docs
 
 Git is the source of truth. The database mirrors it, and the run reads the database.

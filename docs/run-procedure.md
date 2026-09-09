@@ -22,8 +22,30 @@ and the others belong to a different account. Anything else, stop.
 
 Read the ledger in `config.md`, take the next number, and do not repeat an artist.
 
-Apply the selection filter in `config.md`. Hunt named artists and named publications; generic
-trend queries return listicles with nothing decomposable in them.
+**Check the queue first.** Brad adds artists and looks he wants covered:
+
+```sql
+select * from public.queue_next();
+```
+
+If it returns a row, that is the look — take it, and honour the note. The queue overrides the
+selection filter, including the rotation: a queued artist gets made whether or not it fits the
+current bias. After the look publishes:
+
+```sql
+select * from public.queue_mark_used(<queue id>, <look_no>);
+```
+
+If a queued entry turns out to be unworkable — no usable references anywhere, or the body of
+work has no decomposable look in it — set its status to `'skipped'` with a reason in the note
+rather than silently self-selecting past it, and say so in the report.
+
+**Only when the queue is empty**, self-select using the selection filter in `config.md`. Hunt
+named artists and named publications; generic trend queries return listicles with nothing
+decomposable in them.
+
+Whichever way the look arrived, the plates decide everything after this. A queued name is a
+starting point, not a decision about what the look is.
 
 ## 2. Pull the references
 
