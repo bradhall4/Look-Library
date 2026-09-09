@@ -4,8 +4,18 @@ Read after `config.md`. This is the end-to-end sequence for one autonomous run, 
 fresh scheduled session with no memory can complete a look and have it appear on the public
 site without anyone touching anything afterwards.
 
-The site reads Supabase at runtime. **Writing the row IS publishing.** There is no deploy step,
-no build, no cache to clear, and nothing for Claude Code or a human to do afterwards.
+The site reads Supabase at runtime, so there is no deploy step, no build and no cache to clear.
+
+**But writing the row is no longer publishing.** Rows are written with `status = 'draft'`, and
+RLS hides drafts from the site — the public page literally cannot see them. A look goes live
+only when someone who can see images has looked at the frames and promoted it.
+
+This exists because a scheduled cloud session has no browser and cannot see an image, so it
+cannot perform the plate-comparison and caption-matching checks in steps 5 and 7. Every
+unreviewed run so far has shipped a defect: a glass ball floating in black, captions on the
+wrong pictures, subjects frozen when the whole look was a slow shutter. **If you cannot see the
+frames, that is not a reason to stop — write the row as a draft and say plainly in your report
+that it needs eyes.**
 
 ---
 
@@ -305,10 +315,10 @@ bypass exactly the cache that is about to serve the reader the wrong image, so b
 success while the page is wrong. Checking from one machine also only proves one edge; a fresh
 path is the only thing that proves it everywhere.
 
-## 9. Write the row
+## 9. Write the row as a draft
 
-This is the publish. Every column below is what the site reads; anything omitted degrades
-gracefully but leaves a hole on the page.
+Every column below is what the site reads; anything omitted degrades gracefully but leaves a
+hole on the page. `status` defaults to `'draft'`, so simply do not set it.
 
 ```sql
 insert into public.looks (
@@ -362,7 +372,7 @@ Notes that matter:
   `social-fridays.md`.
 - Storage URLs are `https://llnydhsfqyeyvckypxmk.supabase.co/storage/v1/object/public/frames/...`.
 
-## 10. Confirm it published
+## 10. Confirm the draft landed
 
 ```sql
 select look_no, artist, product, jsonb_array_length(frames) as frames,
@@ -370,12 +380,30 @@ select look_no, artist, product, jsonb_array_length(frames) as frames,
 from public.looks order by look_no desc limit 3;
 ```
 
-Then fetch the row the way the site does, to prove the public path works:
+Add `status` to that select and confirm it says `draft`. The row will NOT appear on the public
+REST endpoint, and that is correct — drafts are invisible to the site by design.
 
-`https://llnydhsfqyeyvckypxmk.supabase.co/rest/v1/looks?select=*&order=look_no.desc&limit=1`
-with header `apikey: sb_publishable_E3Bzai6bleUJp2YrYVwpWQ_pSjHD9Nf`
+## 10b. Review and promote — needs a session that can see images
 
-If that returns the new row, the site is already showing it. Nothing else is required.
+A person, or any session with image vision (Claude Code on the Mac), opens the four frames and
+the plates and checks steps 5 and 7 for real: does each frame resemble the plates, did the
+mechanism transfer, does each caption match the picture above it, did the product survive.
+
+Fix anything that fails — remembering that replacing a frame means a **new storage path** — then:
+
+```sql
+select * from public.publish_look(4);
+```
+
+To see what is waiting:
+
+```sql
+select look_no, artist, work, status, captured_on from public.looks
+where status = 'draft' order by look_no;
+```
+
+Going back to instant publishing, if the review queue is ever not worth it, is one policy:
+`using (status = 'published')` becomes `using (true)`.
 
 ## 11. Update the ledger
 
@@ -392,7 +420,9 @@ anything that failed or needed regenerating.
 | Fetch and mirror source plates | `net.http_post` to `mirror-frame` | No |
 | Generate frames | `flora_generate`, one call per frame | No |
 | Move frames into storage | `net.http_post` to `mirror-frame` | No |
-| Publish | `insert into public.looks` | No |
+| Write the draft | `insert into public.looks` | No |
+| Look at the frames | Needs image vision | **Yes** |
+| Publish | `select public.publish_look(N)` | **Yes** |
 | Site shows it | Runtime fetch, no deploy | No |
 | Site *code* changes | git push, Netlify CD | Yes |
 

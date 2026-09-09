@@ -69,17 +69,21 @@ frame; open and check every frame; mirror them; insert the row.
   the stale-CDN failure you are checking for.
 - Captions describe the picture, not the prompt.
 
-5 — PUBLISH AND VERIFY
-The insert IS publishing; the site reads Supabase at runtime and nothing needs deploying.
-Then read it back the way the page does:
-  https://llnydhsfqyeyvckypxmk.supabase.co/rest/v1/looks?select=*&order=look_no.desc&limit=1
-  header  apikey: sb_publishable_E3Bzai6bleUJp2YrYVwpWQ_pSjHD9Nf
-and fetch each frame URL with a plain GET to confirm it returns the image you generated.
+5 — WRITE THE ROW AS A DRAFT
+`status` defaults to 'draft' — do not set it. RLS hides drafts from the public site, so an
+unreviewed look cannot reach the page. Do NOT stop because you cannot see the images: a
+scheduled session has no browser, that is expected, and the draft state exists precisely for
+it. Finish the run, write the draft, and say in your report that it needs eyes.
+Confirm it landed:
+  select look_no, artist, status, jsonb_array_length(frames) from public.looks
+  order by look_no desc limit 1;
+status must read 'draft'. It will NOT appear on the public REST endpoint. That is correct.
 
 6 — REPORT
-What you chose and why, the product, anything that failed or needed regenerating, and the
-ledger line to add to docs/config.md in bradhall4/Look-Library. If you cannot reach git, say
-so and put the line in your write-up.
+What you chose and why, the product, anything that failed or needed regenerating, the four
+frame URLs so they can be reviewed, and the ledger line to add to docs/config.md in
+bradhall4/Look-Library. If you cannot reach git, say so and put the line in your write-up.
+A reviewer with image vision promotes it later with:  select * from public.publish_look(N);
 ```
 
 ---
