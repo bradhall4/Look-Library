@@ -105,11 +105,13 @@
   .tile figure{background:var(--card);overflow:hidden}
   .tile img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .5s cubic-bezier(.2,.6,.2,1)}
   @media (prefers-reduced-motion:no-preference){.tile:hover img{transform:scale(1.025)}}
-  .tile figcaption{padding-top:11px;display:flex;gap:10px;align-items:baseline}
+  /* The caption sits inside the card, so it needs its own inset — without it the
+     text runs into the paper on three sides. */
+  .tile figcaption{padding:13px 16px 0;display:flex;gap:10px;align-items:baseline}
   .tile .no{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--mark);flex:none}
   .tile .nm{font-size:17px;line-height:1.3}
   .tile .nm em{font-style:italic;color:var(--ink-2)}
-  .tile .sub{margin-top:4px;padding-left:30px}
+  .tile .sub{margin-top:5px;padding:0 16px 15px 42px}
   .tile:hover .nm{color:var(--mark)}
   .awaiting{border:1px solid var(--hair);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
 
@@ -476,6 +478,10 @@ function wireImages(root){
 }
 const esc = s => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const no3 = n => String(n).padStart(3,"0");
+/* `product` is stored as "category — physical description", because the description
+   is what the treatment string needs. The index tile only has room for the category;
+   the full string still shows in the detail header. */
+const shortProduct = p => String(p||"").split(/\s[—–-]\s/)[0].trim();
 let LOOKS = [], FILTER = "all";
 
 /* Normalise a row from any source. The CMS is edited by a scheduled task and by
@@ -556,7 +562,7 @@ function renderGrid(){
           <span class="no">${no3(l.look_no)}</span>
           <span class="nm">${esc(l.artist)}${l.work?`, <em>${esc(l.work)}</em>`:""}</span>
         </figcaption>
-        <div class="sub label">${l.mode==="social"?`<span class="flag">social</span> &nbsp;`:""}${esc(l.era||"")} &nbsp;·&nbsp; ${esc(l.lane)}${l.product?` &nbsp;·&nbsp; ${esc(l.product)}`:""}</div>
+        <div class="sub label">${l.mode==="social"?`<span class="flag">social</span> &nbsp;`:""}${esc(l.era||"")} &nbsp;·&nbsp; ${esc(l.lane)}${l.product?` &nbsp;·&nbsp; ${esc(shortProduct(l.product))}`:""}</div>
       </figure>
     </button>`).join("")
     + (sparse&&FILTER==="all"?`<div class="awaiting"><span class="label">Next entry Wednesday</span></div>`:"")
