@@ -26,6 +26,16 @@ Rotate the category across runs. Do not do phones three times running.
 
 - In **two of the four frames**, not all four. One frame stays clean so the look itself is
   legible without commercial interference, and the control frame is always the clean one.
+- **The two product frames carry two different products.** Never the same object twice in one
+  look — that is a product shoot, not a transfer test. The point is proving the treatment holds
+  across different objects, the same way the four subjects prove it holds across different
+  scenes.
+- **One of the two is always a Google Pixel 10.** Every look gets a Pixel frame, so the library
+  builds a running set of one device rendered through every art direction in it. Describe the
+  form as well as naming it: a flat matte glass back, softly rounded corners, polished aluminium
+  rails, and the wide horizontal camera bar running across the upper back. Expect the logo to
+  come back imperfect and say so in the verdict.
+- **The other rotates** across tech, beauty, fashion and food. Rotate it away from recent runs.
 - Held, worn, used or resting in the scene as it naturally would be. Not floating, not
   hero-lit on a plinth, not centred like a pack shot unless the look itself is a still life.
 - The treatment string is unchanged. The product enters through the subject clause only. That
@@ -37,6 +47,27 @@ Rotate the category across runs. Do not do phones three times running.
   a can, a swoosh on a shoe, a wordmark on a jersey. The test is whether a real photographer
   shooting that product would have it in frame. Printed on the thing: yes. Composited over the
   picture: no.
+
+## Make it look shot, not rendered
+
+Product frames drift glossy faster than any other kind. A model asked for a lipstick on a
+counter will give you a flawless stock still life: pristine surface, perfect symmetry, no
+history. That is the failure mode to watch, and it fails the whole point of the library — these
+are meant to read as raw frames off a real shoot.
+
+State the imperfections positively, as things that ARE in the picture:
+
+- **The object has been handled.** Fingerprints and skin oil on the case, a smear of product
+  near the tip, a scuff on an edge, dust caught in a seam, a fingerprint on the glass.
+- **The surface is a real surface.** A worn counter with marks on it, not a seamless sweep.
+  Crumbs, a ring left by a glass, a hair, a chip in the paint.
+- **The composition is slightly wrong on purpose.** Off-centre, cropped awkwardly, too much dead
+  space on one side. A perfectly balanced frame reads as a layout.
+- **People are people.** Uneven skin with visible pores and texture, a blemish, stray hairs,
+  asymmetry, nothing retouched. Not a model, not a beauty ad.
+
+The plates for any look worth having in here are full of this. Go back and look at what is
+actually untidy in them, and put that specific untidiness in the string.
 
 ## Guard the incidental kit, not the product
 

@@ -109,8 +109,15 @@ subject. State what IS in the frame — negative instructions get ignored.
 ## 4. Generate
 
 Four frames, four different subjects, one identical treatment string. At least one modern,
-campaign-plausible subject. One product per `product-rule.md`, appearing in two of the four; the
-control frame is always clean.
+campaign-plausible subject. Two products per `product-rule.md` — one of them always a Google
+Pixel 10, the other rotating — one product per frame and never the same object twice. The
+control frame stays clean.
+
+**Put the imperfections in the string, every time.** The default output of any image model is
+too clean, too symmetrical and too new, and product frames drift that way hardest. Name what is
+untidy: handled surfaces, worn counters, uneven skin, off-centre framing, dust, fingerprints.
+Take the specifics from the plates — whatever is actually scuffed or crooked or greasy in them
+is what belongs in the string.
 
 **One `flora_generate` call per frame.** Never match outputs to captions by position — canvas
 runs return ids in a different order than the nodes were passed, and that has put captions on
