@@ -193,7 +193,9 @@
   .yield{display:grid;gap:clamp(16px,2vw,26px);grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr))}
   .plate figure{background:var(--card)}
   .plate img{width:100%;aspect-ratio:1/1;object-fit:cover}
-  .plate figcaption{padding-top:9px;display:flex;gap:9px;align-items:baseline}
+  /* Sits on a white card, so it needs an inset on all four sides. The source
+     plates below are captioned straight onto the paper and are left flush. */
+  .plate figcaption{padding:12px 15px 14px;display:flex;gap:9px;align-items:baseline}
   .plate .role{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--mark);flex:none}
   .plate .cap{font-size:14.5px;font-weight:300;color:var(--ink-2);line-height:1.35}
 
