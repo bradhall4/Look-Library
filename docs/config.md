@@ -29,6 +29,26 @@ restrained, or otherwise off-axis. Rotate across high and low brow, classic and 
 a real outlier rather than a near-miss, and say plainly in the write-up that it is a deliberate
 exception.
 
+### The two questions to ask before committing
+
+1. **Is it exciting and vibrant?**
+2. **Is the concept or approach applicable to an eye-catching advertisement?**
+
+The second one is the sharper filter, and it is really asking: *is this look a portable
+mechanism, or is it a subject?* A mechanism can be pointed at anything. A subject cannot.
+
+- **Hype Williams passes.** Drown a room in one colour and light it only with what is in the
+  room. That is a lighting instruction. It works on a car, a gym, a DJ, a phone.
+- **Max Manavi-Huber passes.** Hard flash freezing the subject while the ambient drags a ghost
+  off every edge. Also an instruction, also portable to anything that moves.
+- **Lola Raban is the near miss.** Beautifully observed, but the look is welded to its subject —
+  the specific world of fashion workers and their tools. Strip the subject away and there is no
+  transferable instruction left, which means it cannot be pointed at a client's product. Good
+  photography, wrong shelf.
+
+If you cannot finish the sentence "the mechanism is ___ and you could point it at a running shoe
+tomorrow", it is a subject and not a look. Put it back.
+
 Energy is a mechanism, not a mood. Every kinetic look has a physical cause: shutter speed and
 whether the blur is subject or camera; flash ratio; lens width combined with subject proximity;
 handheld amplitude; saturation and contrast pushed past documentary. A card that says
