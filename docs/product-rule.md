@@ -10,14 +10,14 @@ category, so the frames read as raw imagery from an actual shoot rather than as 
 
 ## The rule
 
-Each run picks **one product**, appropriate to the world the look already lives in. Not random:
-the product should be something that could plausibly be shot in that setting, by that
-photographer, for a real client.
+Each run picks **one product**, from **tech, beauty, fashion or food**, appropriate to the world
+the look already lives in. Not random: it should be something that could plausibly be shot in
+that setting, by that photographer, for a real client.
 
-- Sport or street look -> performance eyewear, a running shoe, a sports drink, a phone
-- Domestic or table look -> a sandwich, a soft drink, a condiment, cookware
-- Portrait or beauty look -> eyelashes and skin, a lipstick, a fragrance bottle, earbuds
+- Sport or street look -> a running shoe, performance eyewear, a sports drink, a phone
 - Night or club look -> smart glasses, a camera, a can, a lighter
+- Portrait or beauty look -> eyelashes and skin, a lipstick, a fragrance bottle, earbuds
+- Domestic or table look -> a sandwich, a soft drink, a condiment, cookware
 - Travel or outdoors look -> a backpack, sunglasses, a watch, a vehicle detail
 
 Rotate the category across runs. Do not do phones three times running.
