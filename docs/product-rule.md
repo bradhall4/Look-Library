@@ -38,6 +38,28 @@ Rotate the category across runs. Do not do phones three times running.
   shooting that product would have it in frame. Printed on the thing: yes. Composited over the
   picture: no.
 
+## Guard the incidental kit, not the product
+
+The marks that cause trouble are **not on the product**. They arrive uninvited on everything
+else the subject is wearing: a legible HOKA wordmark on a running shoe, an Oakley ellipse on a
+goggle strap, mangled invented lettering on a glove cuff. That happened on two of four frames in
+look 004 and cost three regenerations.
+
+A real brand's mark on kit you did not choose misrepresents that brand and makes the frame
+unusable as a raw shoot output. A mangled almost-mark just reads as cheap. Both fail review.
+
+- **State blankness as a positive attribute.** Negative phrasing is ignored, so "no logos" does
+  nothing. Write what the surface *is*: "plain unmarked white knit running shoes, surfaces
+  completely smooth and blank, bare white mesh uppers, one clean unbroken fluoro orange stripe
+  along an otherwise empty midsole." That worked first try.
+- **Name every worn item you want clean** — shell, goggles, strap, gloves, vest — not just the
+  obvious one.
+- **Check at about 4x and brightened.** A wordmark that is obvious zoomed in is invisible at
+  page size and will still ship.
+- **Calibrate.** Reject anything legible as type or recognisable as a real logo at normal
+  viewing size. A few pixels of illegible texture on a buckle at 4x is not a defect and is not
+  worth a regeneration.
+
 ## Describe form first — a craft default, not a ban
 
 **Default to describing the product by its physical characteristics rather than its brand name.**
