@@ -103,10 +103,11 @@ in a different order than the nodes were passed.
 
 ## Ledger — looks already covered
 
-Do not repeat an artist or treatment on this list. Next look is **004**.
+Do not repeat an artist or treatment on this list. Next look is **005**.
 
 | # | Date | Artist | Work | Lane | Notes |
 |---|------|--------|------|------|-------|
 | 001 | 2026-09-04 | Ana Paganini | "200 Summers Later" | current | Transfers well; the anachronism device is the strong part. Built on stillness, so it sits outside the energy bias — treat as the reference entry for format, not for selection. |
 | 002 | 2026-09-06 | Hype Williams | "Hype Flood" | archive | One saturated colour flooding the frame, practicals as the only light, crushed blacks, still deadpan subject inside architecture. Product: smart glasses. |
 | 003 | 2026-09-07 | William Klein | "Vogue in the Street" | archive | 28mm at point-blank, 1/8 second so subject and background both smear with one sharp anchor. No product; predates the rule. |
+| 004 | 2026-09-09 | Max Manavi-Huber | "Flash Against Nothing" | current | Hard flash freezes the athlete while the ambient exposure drags a translucent ghost off every frozen edge; camera on the ground, wide, body cropped at the jaw, half the frame left as empty sky, snow or black air. Product: sports drink can. Clean modern digital — no grain, deliberately not look 002's answer. |
