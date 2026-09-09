@@ -103,7 +103,7 @@ in a different order than the nodes were passed.
 
 ## Ledger — looks already covered
 
-Do not repeat an artist or treatment on this list. Next look is **005**.
+Do not repeat an artist or treatment on this list. Next look is **006**.
 
 | # | Date | Artist | Work | Lane | Notes |
 |---|------|--------|------|------|-------|
@@ -111,3 +111,4 @@ Do not repeat an artist or treatment on this list. Next look is **005**.
 | 002 | 2026-09-06 | Hype Williams | "Hype Flood" | archive | One saturated colour flooding the frame, practicals as the only light, crushed blacks, still deadpan subject inside architecture. Product: smart glasses. |
 | 003 | 2026-09-07 | William Klein | "Vogue in the Street" | archive | 28mm at point-blank, 1/8 second so subject and background both smear with one sharp anchor. No product; predates the rule. |
 | 004 | 2026-09-09 | Max Manavi-Huber | "Flash Against Nothing" | current | Hard flash freezes the athlete while the ambient exposure drags a translucent ghost off every frozen edge; camera on the ground, wide, body cropped at the jaw, half the frame left as empty sky, snow or black air. Product: sports drink can. Clean modern digital — no grain, deliberately not look 002's answer. |
+| 005 | 2026-09-09 | Angelo Cerisara | "Close Enough to Sweat" | current | From the queue, so it overrode the rotation and gave two `current` runs in a row. Long lens uncomfortably close, camera locked square or straight down or low, the face never shown whole, moisture on every surface, one near-monochrome field per frame with exactly one saturated accent. Clean modern digital — Nano Banana Pro, not the film vocabulary of 002. Product: lipstick (beauty), rotating off tech and food. Plates are frame grabs from Biscuit Filmworks; Instagram is not fetchable. |
