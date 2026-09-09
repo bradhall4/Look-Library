@@ -4,43 +4,82 @@ The scheduled cloud task should hold **only this short block**. Everything it ne
 the database and is refreshed from this git repo, so the instructions below never go stale and
 never need editing again.
 
-Replace the whole contents of the Claude project's instructions (and delete the old
-`claude/look-library-*.md` copies, which are now a second source of truth and will drift) with:
+**B is the one to paste** into the Claude project's instructions, replacing everything (and
+delete the old `claude/look-library-*.md` copies — they are now a second source of truth and
+will drift). **A is a free dry run**: paste it once first to prove the plumbing before spending
+about $1.10 on a real run.
 
 ---
 
+## A. Dry run — checks the plumbing, generates nothing, costs nothing
+
 ```
-You are running the Look Library routine.
+Look Library — plumbing check only. Do not generate anything and do not write any look.
 
-STEP 1. Confirm the database. Call get_project_url on the Supabase connector and check it
-returns llnydhsfqyeyvckypxmk. There is more than one Supabase connector on this account and
-the other belongs to a different account. If it is not that ref, stop and say so.
+1. get_project_url on the Supabase connector must return llnydhsfqyeyvckypxmk. Several
+   Supabase connectors are attached and the others belong to a different account. If it is
+   not that ref, stop.
+2. select public.runbook_fetch();      -- wait ~5 seconds
+   select doc_slug, http_status, doc_bytes, applied from public.runbook_apply();
+   select slug, length(body), updated_at from public.runbook order by slug;
+3. select look_no, artist, work, product from public.looks order by look_no desc limit 3;
+4. Fetch this as a reader would, with no auth beyond the key and no cache-busting:
+   https://llnydhsfqyeyvckypxmk.supabase.co/rest/v1/looks?select=look_no,artist&order=look_no.desc&limit=1
+   header  apikey: sb_publishable_E3Bzai6bleUJp2YrYVwpWQ_pSjHD9Nf
+5. Confirm Flora is reachable: flora_list_workspaces, and confirm
+   ws_qd78p1ntmp1zkgrjb9n8hvv8117v9y4x is present.
 
-STEP 2. Refresh the operating docs from git, then read them. Run:
+Report: which of the five passed, the exact failure for any that did not, and the highest
+look_no currently published. Change nothing.
+```
 
-    select public.runbook_fetch();
+## B. The real run — paste this as the scheduled task's prompt
 
-wait about five seconds, then:
+```
+You are running the Look Library routine. Work autonomously and report honestly at the end.
 
-    select doc_slug, http_status, applied from public.runbook_apply();
+1 — CONFIRM THE DATABASE
+get_project_url must return llnydhsfqyeyvckypxmk. Several Supabase connectors are attached
+and the others belong to a different account. If it is not that ref, stop and say so.
 
-Then read the docs themselves:
+2 — LOAD THE OPERATING DOCS
+  select public.runbook_fetch();      -- wait ~5 seconds
+  select doc_slug, http_status, applied from public.runbook_apply();
+  select slug, body from public.runbook order by slug;
+If a doc reports applied = false, continue on what is stored and say which may be stale.
+config = selection filter, ids, ledger.  run-procedure = the sequence and the INSERT that
+publishes.  product-rule = the product.
 
-    select slug, body from public.runbook order by slug;
+3 — DO THE RUN
+Follow run-procedure exactly. In outline: read the ledger and take the next number; choose a
+look and a product; mirror four or five source plates; build the evidence table and write the
+treatment string from the plates alone; generate four frames with one flora_generate call per
+frame; open and check every frame; mirror them; insert the row.
 
-If runbook_fetch or runbook_apply errors, or a doc comes back with applied = false, carry on
-using whatever is already stored in public.runbook and say clearly in your write-up that the
-docs may be stale and which ones.
+4 — NON-NEGOTIABLES. Each of these has broken a previous run.
+- Write the treatment from the plates, never from what the artist is famous for. If the string
+  could have been written without opening the plates, it is wrong.
+- Do not paste forward the last look's settings. Grain, crushed blacks and anti-gloss language
+  are one look's answer, not the house style. Pick the model against what the plates are.
+- One flora_generate call per frame. Never match outputs to captions by position.
+- Open every frame before writing the row and match each to its caption by eye.
+- Never write to a storage path that has already been published. Replacing a frame means a new
+  path, e.g. look-NNN/v2/<slug>.png.
+- Verify images with a plain GET. No ?t= cache-buster, no Cache-Control: no-cache — both hide
+  the stale-CDN failure you are checking for.
+- Captions describe the picture, not the prompt.
 
-STEP 3. Follow them. `config` holds the selection filter, the ids and the ledger.
-`run-procedure` is the step-by-step for one run and contains the exact INSERT that publishes a
-look. `product-rule` governs the product. Obey the ledger: read it before choosing, and take
-the next number after the highest entry.
+5 — PUBLISH AND VERIFY
+The insert IS publishing; the site reads Supabase at runtime and nothing needs deploying.
+Then read it back the way the page does:
+  https://llnydhsfqyeyvckypxmk.supabase.co/rest/v1/looks?select=*&order=look_no.desc&limit=1
+  header  apikey: sb_publishable_E3Bzai6bleUJp2YrYVwpWQ_pSjHD9Nf
+and fetch each frame URL with a plain GET to confirm it returns the image you generated.
 
-STEP 4. Report what you did, honestly, including anything that failed or needed regenerating,
-and append your line to the ledger table in the config doc. Note that appending to the ledger
-means editing docs/config.md in the git repo bradhall4/Look-Library — if you cannot reach git,
-say so and put the ledger line in your write-up so it can be added by hand.
+6 — REPORT
+What you chose and why, the product, anything that failed or needed regenerating, and the
+ledger line to add to docs/config.md in bradhall4/Look-Library. If you cannot reach git, say
+so and put the line in your write-up.
 ```
 
 ---
