@@ -103,7 +103,7 @@ in a different order than the nodes were passed.
 
 ## Ledger — looks already covered
 
-Do not repeat an artist or treatment on this list. Next look is **006**.
+Do not repeat an artist or treatment on this list. Next look is **007**.
 
 | # | Date | Artist | Work | Lane | Notes |
 |---|------|--------|------|------|-------|
@@ -112,3 +112,4 @@ Do not repeat an artist or treatment on this list. Next look is **006**.
 | 003 | 2026-09-07 | William Klein | "Vogue in the Street" | archive | 28mm at point-blank, 1/8 second so subject and background both smear with one sharp anchor. No product; predates the rule. |
 | 004 | 2026-09-09 | Max Manavi-Huber | "Flash Against Nothing" | current | Hard flash freezes the athlete while the ambient exposure drags a translucent ghost off every frozen edge; camera on the ground, wide, body cropped at the jaw, half the frame left as empty sky, snow or black air. Product: sports drink can. Clean modern digital — no grain, deliberately not look 002's answer. |
 | 005 | 2026-09-09 | Angelo Cerisara | "Close Enough to Sweat" | current | From the queue, so it overrode the rotation and gave two `current` runs in a row. Long lens uncomfortably close, camera locked square or straight down or low, the face never shown whole, moisture on every surface, one near-monochrome field per frame with exactly one saturated accent. Clean modern digital — Nano Banana Pro, not the film vocabulary of 002. Products: Google Pixel 10 and a lipstick, one per frame. Both product frames were regenerated once for being too glossy — the fix was naming the untidiness explicitly. Plates are frame grabs from Biscuit Filmworks; Instagram is not fetchable. |
+| 006 | 2026-09-09 | Lola Raban | "Attributes of the Trade" | current | **Deliberate exception** — restrained, still, no motion or flash, first off-axis run since 001. Sander-style trade typology: dead square to the subject, camera level, full-length or torso-cropped, flat ambient light, tools of the trade worn on the body, the room left exactly as found. Colour negative film — grain is load-bearing and only appeared once the medium led the prompt's first clause. GPT Image 2, not the Nano Banana Pro of 004/005. Products: Google Pixel 10 and a tan leather tote. The Pixel only reads at torso crop; at full length it is an unreadable slab. Queue was empty. |
