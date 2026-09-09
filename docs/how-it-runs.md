@@ -53,10 +53,21 @@ select slug, length(body), updated_at from public.runbook order by slug;
 Two phases because pg_net only dispatches on transaction commit — one function cannot fire a
 request and read its own response.
 
-**Check that it took.** `raw.githubusercontent.com` is CDN-cached and a sync run straight after
-a push can be served the previous version while still reporting 200 and `applied = true`.
-`runbook_fetch` appends a unique query string per call to defeat this, but if a byte count is
-unchanged after a real edit, it did not take.
+**Sync by commit SHA, not by branch name.** `raw.githubusercontent.com` is CDN-cached, and a
+sync straight after a push gets served the previous version while still reporting 200 and
+`applied = true` — a silent stale read. A unique query string per request does not reliably
+defeat it. A commit SHA is immutable, so it cannot be served stale:
+
+```sql
+select public.runbook_fetch('<full commit sha>');   -- git rev-parse HEAD
+```
+
+`runbook_fetch` takes any git ref, so the SHA goes straight in where the branch name would.
+Plain `runbook_fetch()` still works and is fine for a scheduled run reading docs that were
+pushed hours ago; use the SHA whenever you have just pushed.
+
+Either way, check `length(body)` changed. Note it counts characters, not bytes, so a file with
+em-dashes will read slightly smaller than `wc -c` reports.
 
 ## Objects
 
