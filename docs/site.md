@@ -53,6 +53,26 @@ Rows are normalised on the way in, because the CMS is written by a scheduled tas
 
 Smoke-tested against deliberately messy rows with no page errors.
 
+## Deploys cost credits; docs changes must not trigger them
+
+Netlify rebuilds on **every** push to the linked branch, regardless of what the commit touched.
+Most commits in this repo only edit `docs/`, which the site never reads — and each of those was
+burning a build. Over the first two days, 19 pushes produced 16 pointless builds.
+
+`netlify.toml` now carries an `ignore` hook that cancels the build unless the push actually
+changed `site/` or `netlify.toml`:
+
+```toml
+ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- site/ netlify.toml"
+```
+
+Netlify cancels on exit 0 and builds on anything non-zero, and `git diff --quiet` exits 0 when
+there is no difference — so no page change means no build. If `CACHED_COMMIT_REF` is empty the
+git command errors non-zero and the build proceeds, which is the safe way round.
+
+**Adding a look has never needed a deploy** and still does not: the page fetches Supabase at
+runtime. If deploy credits are being consumed, it is code pushes, not new entries.
+
 ## Deploying
 
 `bradhall4/Look-Library` (capital L, hyphen — the lowercase name in older notes does not exist)

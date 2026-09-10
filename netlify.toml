@@ -3,6 +3,18 @@
   publish = "site"
   command = ""
 
+  # Netlify rebuilds on every push to the linked branch, whatever changed.
+  # Most commits here only touch docs/, which the site never reads — those were
+  # burning a build each. This cancels the build unless the push actually
+  # changed the page or this config.
+  #
+  # Netlify runs `ignore` and CANCELS on exit 0, BUILDS on anything non-zero.
+  # `git diff --quiet` exits 0 when there is no difference, which is exactly the
+  # case we want cancelled. If CACHED_COMMIT_REF is empty (first build after a
+  # cache reset) git errors non-zero and the build proceeds, which is the safe
+  # way round.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- site/ netlify.toml"
+
 [[headers]]
   for = "/*"
   [headers.values]
