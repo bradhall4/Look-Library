@@ -22,6 +22,41 @@ that setting, by that photographer, for a real client.
 
 Rotate the category across runs. Do not do phones three times running.
 
+## Let the frame choose the product
+
+**Decide the product frame by frame, from what that image is already telling you.** Not from a
+category rota applied top-down. Build the scene first, look at what it is doing, and then ask:
+what would plausibly be in this person's hand, on this surface, on this body, right here?
+
+Three questions, in order:
+
+1. **What is this frame about?** The situation, the gesture, the moment it has framed.
+2. **What object does that situation already imply?** Something a real person in that scene
+   would be holding, wearing, using or have just put down.
+3. **Does the look's own mechanism have a use for it?** The best choice is one the treatment can
+   act on — something the light, the colour rule or the composition rule can do something with.
+
+A product that answers all three stops being a placement and becomes the reason the picture
+works. A product that answers none of them is a sandwich dropped into a nightclub because the
+rota said food this week.
+
+Worked examples from the library:
+
+- **Ranks of hands repeating into pattern** wanted something handheld that comes in quantity, so
+  it got an ice cream cone — and the look's imperfection rule then supplied the melt running
+  down one wrist, which is what makes the grid read as a shoot.
+- **A woman at a mirror with her face turned away** got a phone lying face down on the table,
+  because that is what someone actually does with a phone in that moment. The mirror does the
+  doubling; the phone just sits there being true.
+- **An extreme close-up built around an object presented to camera** got a lipstick raised beside
+  the cheek, because that staging was already the whole frame.
+- **A hard-flash sports frame** got a drink can, because that is what is in an athlete's hand
+  after the thing the picture is about.
+
+The Pixel is still mandatory in one frame of every look, but the same rule applies to it: find
+the frame whose situation genuinely wants a phone in it, and put it there. Do not bolt it onto
+whichever frame is left over.
+
 ## How the product appears
 
 - In **two of the four frames**, not all four. One frame stays clean so the look itself is

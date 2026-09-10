@@ -120,6 +120,12 @@ campaign-plausible subject. Two products per `product-rule.md` — one of them a
 Pixel 10, the other rotating — one product per frame and never the same object twice. The
 control frame stays clean.
 
+**Choose each product from the frame it lands in.** Build the scene first, then ask what that
+situation already implies: what would plausibly be in this person's hand, on this surface, right
+here. A product chosen this way becomes the reason the picture works; a product assigned from a
+rota is a placement, and it looks like one. This applies to the Pixel too — put it in the frame
+whose situation genuinely wants a phone, not whichever frame is left over.
+
 **Put the imperfections in the string, every time.** The default output of any image model is
 too clean, too symmetrical and too new, and product frames drift that way hardest. Name what is
 untidy: handled surfaces, worn counters, uneven skin, off-centre framing, dust, fingerprints.
