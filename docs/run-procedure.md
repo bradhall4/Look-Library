@@ -49,7 +49,14 @@ starting point, not a decision about what the look is.
 
 ## 2. Pull the references
 
-Four or five frames by the artist, each demonstrating something specific. Mirror each into
+Four or five frames by the artist, each demonstrating something specific.
+
+**Spread them across the artist's range, not one series.** The plates you choose define the look
+you capture, so five images pulled from a single article or a single campaign will give you that
+campaign rather than the artist. Look 007 was built twice for exactly this reason: the first five
+plates all came from one piece about Bourdin's Charles Jourdan Polaroids, which produced a
+faithful decomposition of *that trick* and missed the far bigger mechanism running through his
+work. If every plate shares a prop, a client or a year, go and find others before writing a word. Mirror each into
 storage so the site never depends on someone else's URL:
 
 ```sql
