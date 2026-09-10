@@ -132,9 +132,14 @@ untidy: handled surfaces, worn counters, uneven skin, off-centre framing, dust, 
 Take the specifics from the plates — whatever is actually scuffed or crooked or greasy in them
 is what belongs in the string.
 
-**One `flora_generate` call per frame.** Never match outputs to captions by position — canvas
-runs return ids in a different order than the nodes were passed, and that has put captions on
-the wrong pictures more than once.
+**Group the plates and wire each group to its own output.** Sort them by the theme they share,
+give each group its own prompt node, and run the graph — see `config.md`. Two or three plates
+that share a mechanism give the model a coherent instruction; all five at once give it an
+average. Building the graph is free, so lay it out and check the wiring before spending.
+
+`flora_run_canvas_nodes` returns one entry per node, each carrying its own `run_id`, so outputs
+are bound to nodes explicitly. **Never match outputs to captions by position anyway** — open
+them and match by eye, because that is the check that catches everything else too.
 
 **Pick the model against what the plates are**, not out of habit. See `config.md`. If two
 attempts fail the same way, change the model rather than escalating the wording — a model cannot

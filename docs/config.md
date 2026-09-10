@@ -112,14 +112,82 @@ Getting a model to stop rendering plastic is a matter of describing **people and
 rather than cameras — skin, fabric, how people behave, what is left un-composed. Whether you
 want that at all depends entirely on the plates.
 
-## Flora canvas notes
+## Flora canvas: group the references, one group per output
+
+**Do not dump every plate into every generation.** Sort the plates into themed groups during
+decomposition, and wire each group to its own output node with its own prompt. A group of two or
+three plates that share a mechanism gives the model a coherent instruction; all five at once
+gives it an average.
+
+Verified on a scratch canvas 10 Sep: two groups from the same artist, each with its own prompt,
+produced two clearly distinct images that each carried their own group's DNA — one the vast
+empty field and hard shadow of its pair, the other the mirror and the hands-over-face of its
+pair, fused into a single new frame.
+
+### Building it
+
+```
+flora_add_to_canvas(project_id, diagram, node_params)
+```
+
+```
+graph LR
+  genA["placeholder"]
+  genB["placeholder"]
+  mcp_upload_<a> --> genA
+  mcp_upload_<b> --> genA
+  mcp_upload_<c> --> genB
+  mcp_upload_<d> --> genB
+```
+
+with `node_params` carrying the real prompt and settings per node:
+
+```json
+{"genA": {"prompt": "...", "model": "is2i-gemini-3-pro", "aspect_ratio": "3:2", "resolution": "2K"}}
+```
+
+Rules that bite:
+
+- **`graph LR`.** `flowchart LR` is silently unrecognised and drops every edge.
+- **Existing nodes appear as bare ids inside edges and are never re-declared.** This is add-only;
+  re-declaring `n3["label"]` creates a *second* node instead of editing the first.
+- **A node's mermaid label becomes its prompt**, which is why a node declared with both a label
+  and a `content_url` is rejected. Declare new generation nodes with a throwaway label and set
+  the real prompt through `node_params`, which overrides it.
+- **The ids you wrote are not the ids you get.** The response returns a diagram with reassigned
+  ids — `genA` came back as `n6`. Read them from the response; your own ids are not valid for
+  running.
+- **Adding a node does not run it.** Building the graph is free; only `flora_run_canvas_nodes`
+  spends. So the structure can be laid out and checked before a penny goes out.
+- Flora reads each group as a separate **Workflow** in `flora_get_canvas`, which is a free check
+  that the wiring is what you intended.
+
+### Running it
+
+```
+flora_run_canvas_nodes(workspace_id, project_id, node_ids=["n5","n6"])
+```
+
+**This returns one entry per node, each pairing `node_id` with its own `run_id`.** That is the
+fix for the caption misassignment that hit looks 001–003: the two test runs above were created
+two milliseconds apart — the exact condition that scrambled things before — and the mapping was
+still unambiguous because every entry carried its node.
+
+Earlier versions of this document said to avoid the canvas path and use one `flora_generate`
+call per frame. That advice came from the old handoff notes and was never tested. It is wrong:
+the canvas path is now preferred, because it groups references properly, keeps the prompt and
+the model on the canvas as provenance, lets a single frame be re-run later without rebuilding
+anything, and binds outputs to nodes explicitly.
+
+`flora_generate` is still fine for a one-off, and it wires its own edges from
+`reference_node_ids`. Use it when there is no grouping to express.
+
+### Getting plates onto the canvas
 
 `flora_create_asset` with `project_id` set fetches server-side and lands the image as its own
-node, id `mcp_upload_<suffix>`. Read ids with `flora_list_canvas_nodes` or `flora_list_assets`.
-Flora's fetch allowlist is broader than its docs suggest — test rather than assume.
-
-For proof frames use `flora_generate`, never the mermaid canvas-graph path: it returns run ids
-in a different order than the nodes were passed.
+node, id `mcp_upload_<asset suffix>`. Read ids with `flora_list_canvas_nodes`. Flora's fetch
+allowlist is far broader than its docs suggest — it pulled from Biscuit Filmworks, WhiteWall,
+SHOWstudio and the Independent without complaint. Test rather than assume.
 
 ## Ledger — looks already covered
 
