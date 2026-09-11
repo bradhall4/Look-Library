@@ -4,7 +4,7 @@ One run produces one entry. Read `config.md` first for the ids and the ledger.
 
 The job in six steps:
 
-1. Find a look — an auteur, a cultural niche, or a current trend.
+1. Find a look — commercial photography first: campaign, advertising, fashion, music.
 2. Pull their references.
 3. Decompose it: the principles underneath, and the technique on the surface.
 4. Generate new frames from those references, with a placeholder product in some of them.
@@ -40,9 +40,11 @@ If a queued entry turns out to be unworkable — no usable references anywhere, 
 work has no decomposable look in it — set its status to `'skipped'` with a reason in the note
 rather than silently self-selecting past it, and say so in the report.
 
-**Only when the queue is empty**, self-select using the selection filter in `config.md`. Hunt
-named artists and named publications; generic trend queries return listicles with nothing
-decomposable in them.
+**Only when the queue is empty**, self-select using the selection filter in `config.md`. The
+pool is commercial photography — campaign, advertising, fashion, music — biased toward vibrant,
+dynamic, hype-y, trendy, comedic or hard-stylistic work. Hunt named photographers, named
+campaigns and agency rosters; generic trend queries return listicles with nothing decomposable
+in them.
 
 Whichever way the look arrived, the plates decide everything after this. A queued name is a
 starting point, not a decision about what the look is.

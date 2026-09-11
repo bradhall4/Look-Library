@@ -14,20 +14,29 @@ string, and four frames proving it survives a change of subject.
 
 ## Selection filter
 
-Find a look from **an auteur, a cultural niche, or a current trend**.
+**Hunt commercial photography, not high art.** Campaign work, advertising, fashion and music
+imagery — pictures made to sell something. The gallery canon is not the pool; the pool is the
+work that already has a client attached, because that work has solved the exact problem this
+library exists to solve.
 
 The default bias, which most runs should satisfy:
 
-- **Commercially applicable.** Could this survive a client, a product and a deadline?
-- **Youth-facing.** Street, sport, music, skate, club, fashion, gaming, subculture.
-- **Full of energy.** Kinetic, loud, saturated, physical. Motion, flash, distortion, speed,
-  colour. This is the axis most likely to be missed, because the canonical "great photographer"
-  reflex pulls toward stillness and restraint.
+- **Vibrant.** Saturated, high-contrast, colour used as a decision rather than as whatever the
+  room was doing.
+- **Dynamic.** Motion, flash, distortion, speed, physicality. Something is happening.
+- **Cool and hype-y.** The work that gets screenshotted, reposted and ripped off. If nobody is
+  copying it, it is not the shelf.
+- **Trendy.** Of right now, or the thing right now is quoting.
+- **Comedic or stylistic.** Absurdity played straight, staging pushed past the plausible, a
+  visual joke or a hard stylistic conceit. This axis is new and it is the one most likely to be
+  under-served, because the photographic reflex pulls toward seriousness.
 
-**Roughly one run in four or five should deliberately break that bias** — high-brow, classic,
-restrained, or otherwise off-axis. Rotate across high and low brow, classic and modern. Make it
-a real outlier rather than a near-miss, and say plainly in the write-up that it is a deliberate
-exception.
+A look only needs to be strong on two or three of these. A look that is strong on none of them
+is not vibrant enough for this shelf, however well made it is.
+
+**Roughly one run in five may go outside commercial work** — fine art, documentary, archive —
+but only when the mechanism is so strong it obviously lifts into a campaign. Say plainly in the
+write-up that it is a deliberate exception, and prove the lift rather than asserting it.
 
 ### The two questions to ask before committing
 
@@ -56,20 +65,37 @@ handheld amplitude; saturation and contrast pushed past documentary. A card that
 
 ### Where to look
 
-Kinetic archive: Hype Williams, William Klein, Jean-Paul Goude, David LaChapelle, Ari
-Marcopoulos, Larry Clark, Nick Knight / SHOWstudio, Gondry, Jonze, Cunningham, Åkerlund, Guy
-Bourdin, early skate video, 90s rave photography, Provoke-era Japanese street photography.
+**Comedic and surreal commercial.** TOILETPAPER (Cattelan & Ferrari), Nadia Lee Cohen, Juergen
+Teller, Martin Parr, Charlie Engman, Torbjørn Rødland, Tim Walker, Maurizio Cattelan. Absurdity
+shot dead straight is the richest untapped seam here.
 
-Contemporary: Gabriel Moses, Tyler Mitchell, Harley Weir, Jordan Hemingway, and whoever is
-currently shooting the sport and music work that gets ripped off.
+**Hyper-saturated and stylistic.** Miles Aldridge, David LaChapelle, Daniel Sannwald, Mert &
+Marcus, Erik Madigan Heck, Viviane Sassen, Glen Luchford.
 
-For the deliberate exceptions: the classical and high-brow canon is fair game — Penn, Leiter,
-Deakins, Sander — provided the entry still explains how to reproduce it commercially.
+**Contemporary hype.** Gabriel Moses, Renell Medrano, Micaiah Carter, Campbell Addy, Myles
+Loftin, Quil Lemons, Tyler Mitchell, Ronan Mckenzie, Bolade Banjo, Oliver Hadlee Pearch, Jordan
+Hemingway, Harley Weir, Thomas Prior, Ryan McGinley, Petra Collins, Carlota Guerrero.
 
-Sources that work: It's Nice That (images at `m.itsnicethat.com/original_images/` are fetchable
-by Flora), Frameset. Institutional fallbacks when a site 403s: Wikimedia Commons, MoMA, Tate,
-ICP. **Never search generic trend phrases** — they return SEO listicles with nothing
-decomposable in them.
+**Campaigns worth decomposing as campaigns**, not as photographers: Jacquemus (surreal scale
+comedy), Loewe, Diesel, Marc Jacobs, Moncler, Bottega Veneta, Nike and Jordan, Aesop, Skims.
+
+**Commercial directors with a photographic look.** Traktor, Tom Kuntz, Andreas Nilsson, Ringan
+Ledwidge, Martin de Thurah, Vincent Haycock, Daniels.
+
+**The best single source of names is an agency roster** — Art Partner, Art + Commerce, Webber,
+CLM, Management+Artists, Streeters, Anderson Hopkins. These are lists of working commercial
+photographers with portfolios attached, which is exactly the pool, and they update constantly.
+
+Award archives are the other reliable seam: Cannes Lions, D&AD, Lürzer's Archive, Ads of the
+World, and Campaign's and Adweek's best-of rounds.
+
+Sources that work for images: It's Nice That (`m.itsnicethat.com/original_images/` is fetchable
+by Flora), Frameset, Biscuit Filmworks and other production-company director pages. Flora's
+fetch allowlist is far wider than its docs suggest — WhiteWall, SHOWstudio and the Independent
+all worked. **Never search generic trend phrases** — they return SEO listicles with nothing
+decomposable in them. Hunt named photographers, named campaigns, named rosters.
+
+Already used, do not repeat: see the ledger.
 
 ## Schedule
 
