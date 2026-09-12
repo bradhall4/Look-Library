@@ -11,6 +11,8 @@ The job in six steps:
 5. Look at the frames and judge them against the references.
 6. If they hold, publish.
 
+Then a seventh that is not part of making the look and never gates it: push it.
+
 ---
 
 ## 0. Point at the right database
@@ -202,3 +204,17 @@ select * from public.publish_look(<look_no>);
 ```
 
 Confirm as a reader would, then append the ledger line in `config.md` and push.
+
+## 7. Push it
+
+Only after `publish_look` has returned. See `distribution.md` for the full shape.
+
+```sql
+select public.look_slack_post(<look_no>);
+```
+
+Send that text to the configured channel — `slack_send_message_draft` in any channel other people
+read, `slack_send_message` where Brad is the only reader. If no channel is configured, skip the
+push and say so in the report.
+
+A failed push never un-publishes a look. The site is the record; Slack is a notification.

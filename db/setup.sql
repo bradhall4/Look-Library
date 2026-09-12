@@ -151,3 +151,32 @@ on conflict (look_no) do update set
 
 -- Check it landed.
 select look_no, artist, work, jsonb_array_length(frames) as frames from public.looks order by look_no desc;
+
+-- ---------------------------------------------------------------------------
+-- Distribution. See docs/distribution.md.
+-- Renders a look as the Slack announcement post, so the format lives in one
+-- place and a past look can be re-posted without retyping it. Deliberately not
+-- security definer: RLS keeps drafts unpostable, exactly as it keeps them
+-- invisible to the site.
+-- ---------------------------------------------------------------------------
+create or replace function public.look_slack_post(n int)
+returns text
+language sql
+stable
+as $fn$
+  select format(
+      E'*Look %1$s · %2$s — %3$s*\n%4$s\n\n%5$s\n\n*Paste this into any image model*\n```%6$s```\n\n*Product in frame:* %7$s\n*Source:* %8$s\n*Full recipe:* %9$s',
+      to_char(l.look_no, 'FM000'),
+      l.artist,
+      l.work,
+      coalesce(l.hook, ''),
+      (select string_agg(format('%s — %s', f->>'caption', f->>'url'), E'\n' order by ord)
+         from jsonb_array_elements(l.frames) with ordinality as t(f, ord)),
+      l.treatment,
+      coalesce(nullif(l.product, ''), 'none'),
+      concat_ws(' · ', nullif(l.source_name, ''), nullif(l.source_url, '')),
+      'https://look-library.netlify.app/#' || to_char(l.look_no, 'FM000')
+    )
+  from public.looks l
+  where l.look_no = n;
+$fn$;

@@ -94,5 +94,6 @@ em-dashes will read slightly smaller than `wc -c` reports.
 | `public.looks` | One row per entry. `status` gates publication. |
 | `public.publish_look(n)` | Promotes a draft. |
 | `public.runbook` | Mirror of `docs/`, read by the run. |
+| `public.look_slack_post(n)` | Renders a look as the Slack post. See `distribution.md`. |
 | `public.runbook_fetch(branch)` / `runbook_apply()` | Two-phase sync from git. |
 | `mirror-frame` edge function | Copies an image into the `frames` bucket. Host allowlist, 25MB cap, unauthenticated by design — the only key a caller could hold is the publishable one that already ships in the page. |
